@@ -1,14 +1,48 @@
+:root {
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --container-bg: transparent;
+    --btn-bg: #fff;
+    --btn-text: #333;
+    --circle-text: #fff;
+}
+
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --container-bg: #2a2a2a;
+    --btn-bg: #333;
+    --btn-text: #f0f0f0;
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
     text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: var(--container-bg);
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid var(--text-color);
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
 }
 
 #generator-btn {
@@ -16,22 +50,28 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
 }
 
 #numbers-container {
     display: flex;
     gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .number {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: var(--circle-text);
 }
