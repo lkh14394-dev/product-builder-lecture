@@ -1,18 +1,18 @@
 :root {
     --bg-color: #f0f0f0;
-    --text-color: #333;
+    --text-color: #000000;
     --container-bg: transparent;
-    --btn-bg: #fff;
-    --btn-text: #333;
-    --circle-text: #fff;
+    --btn-bg: #ffffff;
+    --btn-text: #000000;
+    --circle-text: #ffffff;
 }
 
 body.dark-mode {
     --bg-color: #1a1a1a;
-    --text-color: #f0f0f0;
+    --text-color: #ffffff;
     --container-bg: #2a2a2a;
-    --btn-bg: #333;
-    --btn-text: #f0f0f0;
+    --btn-bg: #333333;
+    --btn-text: #ffffff;
 }
 
 body {
