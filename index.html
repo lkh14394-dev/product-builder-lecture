@@ -4,230 +4,232 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-1389709658199316">
-    <title>알랑가 (Alangga) - 상황별 맞춤 컬러 꽃 배달</title>
+    <title>알랑가 - 관계 회복을 위한 가장 확실한 공식</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1389709658199316" crossorigin="anonymous"></script>
     <style>
         :root {
-            --primary: #ff4d6d;
-            --secondary: #212529;
+            --point: #d00000; /* 신뢰와 경고의 레드 */
+            --dark: #1a1a1a;
+            --gold: #c6a664;
             --bg: #ffffff;
-            --light-bg: #fffcfc;
-            --gray: #f1f3f5;
+            --section: #f4f4f4;
             --text: #333;
-            --shadow: 0 10px 30px rgba(255, 77, 109, 0.08);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; letter-spacing: -0.5px; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-        /* Navigation */
-        nav { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f0f0f0; position: sticky; top: 0; background: #fff; z-index: 1000; }
-        .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); text-decoration: none; }
-
-        /* Step Section Container */
-        .step-container { padding: 40px 5%; max-width: 1000px; margin: 0 auto; }
-        .step-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .step-title span { background: var(--primary); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
-
-        /* Step 1: Situation Chips (Horizontal Scroll) */
-        .situation-scroll {
-            display: flex; gap: 12px; overflow-x: auto; padding: 10px 0 20px;
-            -ms-overflow-style: none; scrollbar-width: none;
+        /* Urgency Bar */
+        .urgency-bar {
+            background: var(--point); color: white; padding: 10px; text-align: center;
+            font-size: 0.9rem; font-weight: 700; position: sticky; top: 0; z-index: 2000;
         }
-        .situation-scroll::-webkit-scrollbar { display: none; }
-        .sit-chip {
-            flex: 0 0 auto; padding: 15px 25px; background: var(--gray); border-radius: 50px;
-            font-weight: 700; cursor: pointer; transition: 0.3s; border: 2px solid transparent;
-        }
-        .sit-chip.active { background: var(--primary); color: white; border-color: var(--primary); transform: scale(1.05); }
 
-        /* Step 2: Color Swatches */
-        #color-section { display: none; animation: fadeIn 0.5s ease forwards; margin-top: 20px; }
-        .color-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
-        .color-item { text-align: center; cursor: pointer; transition: 0.3s; }
-        .swatch {
-            width: 60px; height: 60px; border-radius: 50%; margin-bottom: 8px;
-            border: 3px solid transparent; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: 0.3s; position: relative;
+        /* Hero Section */
+        .hero {
+            padding: 80px 5% 60px; text-align: center; background: var(--dark); color: white;
         }
-        .color-item:hover .swatch { transform: scale(1.1); }
-        .color-item.active .swatch { border-color: var(--secondary); transform: scale(1.1); }
-        .color-label { font-size: 0.8rem; font-weight: 600; color: #666; }
-
-        /* Step 3: Recommendation Results */
-        #result-section { display: none; margin-top: 60px; border-top: 1px solid #eee; padding-top: 60px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
-        .product-card {
-            background: #fff; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow);
-            border: 1px solid #fff0f3; transition: 0.3s;
+        .hero h1 { font-size: 2.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
+        .hero h1 span { color: var(--point); }
+        .hero p { font-size: 1.1rem; color: #aaa; margin-bottom: 40px; }
+        .stats-badge {
+            display: inline-flex; gap: 20px; background: rgba(255,255,255,0.1);
+            padding: 15px 30px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);
         }
-        .product-img { width: 100%; height: 350px; object-fit: cover; }
-        .product-info { padding: 25px; }
-        .product-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
-        .product-price { font-size: 1.1rem; color: #666; font-weight: 600; }
+        .stat-item b { color: var(--gold); font-size: 1.4rem; }
 
-        /* Message Translator (Accordion) */
-        .message-box { margin-top: 20px; background: var(--light-bg); border-radius: 15px; padding: 20px; }
-        .msg-btn {
-            width: 100%; padding: 12px; background: var(--secondary); color: #fff; border: none;
-            border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 15px;
+        /* Step Container */
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 5%; }
+        .step { display: none; animation: slideUp 0.5s ease forwards; }
+        .step.active { display: block; }
+
+        .section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 30px; text-align: center; }
+
+        /* Situation Buttons */
+        .grid-buttons { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .btn-solution {
+            padding: 25px; border: 2px solid #eee; border-radius: 15px; background: white;
+            text-align: left; cursor: pointer; transition: 0.3s;
         }
-        .ai-message-area { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; }
-        .ai-option {
-            padding: 12px; background: #fff; border: 1px solid #eee; border-radius: 10px;
-            margin-bottom: 8px; cursor: pointer; font-size: 0.9rem; transition: 0.2s;
+        .btn-solution:hover { border-color: var(--point); background: #fff8f8; }
+        .btn-solution h3 { font-size: 1.2rem; margin-bottom: 5px; }
+        .btn-solution p { font-size: 0.9rem; color: #888; }
+
+        /* Story Input */
+        .input-area { margin-top: 30px; }
+        textarea {
+            width: 100%; height: 150px; padding: 20px; border: 2px solid #eee; border-radius: 15px;
+            font-size: 1rem; resize: none; margin-bottom: 20px; outline: none;
         }
-        .ai-option:hover { border-color: var(--primary); color: var(--primary); }
+        textarea:focus { border-color: var(--point); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Package Card */
+        .package-card {
+            border: 1px solid #ddd; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .package-img { width: 100%; height: 350px; object-fit: cover; background: #eee; }
+        .package-info { padding: 30px; text-align: center; }
+        .package-price { font-size: 1.8rem; font-weight: 900; margin: 15px 0; }
 
-        footer { padding: 60px 5%; background: #111; color: #666; text-align: center; font-size: 0.8rem; margin-top: 100px; }
-        .footer-links { margin-bottom: 20px; }
-        .footer-links a { color: #999; text-decoration: none; margin: 0 10px; }
+        /* Common Button */
+        .btn-action {
+            width: 100%; padding: 22px; background: var(--dark); color: white; border: none;
+            border-radius: 15px; font-size: 1.2rem; font-weight: 800; cursor: pointer; transition: 0.3s;
+        }
+        .btn-action:hover { background: var(--point); transform: translateY(-3px); }
+
+        /* Post-Payment Section */
+        #post-payment { text-align: center; padding: 40px; background: #fdfdfd; border: 2px dashed var(--gold); border-radius: 20px; }
+        .translated-card {
+            background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            font-family: 'Gowun Batang', serif; font-size: 1.3rem; line-height: 1.8; color: #444; margin: 30px 0;
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<nav>
-    <a href="#" class="logo">ALANGGA</a>
-</nav>
+<div class="urgency-bar">
+    ⚠️ 현재 주문 폭주: 오늘 14:00 배송 마감까지 <span id="timer">--:--:--</span> 남음
+</div>
 
-<section class="step-container">
-    <div class="step-title"><span>1</span> 지금 어떤 상황이신가요?</div>
-    <div class="situation-scroll">
-        <div class="sit-chip" onclick="selectSituation('apology', this)">🚨 위기 탈출 사과</div>
-        <div class="sit-chip" onclick="selectSituation('anniversary', this)">💖 로맨틱한 기념일</div>
-        <div class="sit-chip" onclick="selectSituation('office', this)">🏢 직장 깜짝 배송</div>
-        <div class="sit-chip" onclick="selectSituation('celebrate', this)">👏 격하게 축하할 때</div>
+<header class="hero">
+    <h1>싸운 다음 날,<br><span>가장 확실한</span> 화해 공식</h1>
+    <p>화해 성공률 98%, 당신의 진심을 데이터로 세팅해 드립니다.</p>
+    <div class="stats-badge">
+        <div class="stat-item">누적 화해 <b>12,402건</b></div>
+        <div class="stat-item">평균 평점 <b>4.9/5.0</b></div>
+    </div>
+</header>
+
+<main class="container">
+    <!-- Step 1: Situation -->
+    <div id="step-1" class="step active">
+        <h2 class="section-title">지금 어떤 문제에 직면해 계신가요?</h2>
+        <div class="grid-buttons">
+            <button class="btn-solution" onclick="goStep(2, '어제 크게 다툼')">
+                <h3>🚨 어제 크게 다퉜을 때</h3>
+                <p>냉전 중인 관계를 즉시 해제하는 긴급 처방</p>
+            </button>
+            <button class="btn-solution" onclick="goStep(2, '기념일/약속 망침')">
+                <h3>📅 소중한 날을 망쳤을 때</h3>
+                <p>실망감을 감동으로 바꾸는 역전 솔루션</p>
+            </button>
+            <button class="btn-solution" onclick="goStep(2, '요즘 너무 소홀함')">
+                <h3>🏢 요즘 너무 바빠 신경 못 썼을 때</h3>
+                <p>익숙함 속에 숨겨진 고마움을 전하는 회복탄력성</p>
+            </button>
+        </div>
     </div>
 
-    <div id="color-section">
-        <div class="step-title"><span>2</span> 그녀가 좋아할 만한 색상을 골라주세요</div>
-        <div class="color-grid">
-            <div class="color-item" onclick="selectColor('red', this)">
-                <div class="swatch" style="background: #e63946;"></div>
-                <div class="color-label">강렬한 레드</div>
-            </div>
-            <div class="color-item" onclick="selectColor('pink', this)">
-                <div class="swatch" style="background: #ffb3c1;"></div>
-                <div class="color-label">파스텔 핑크</div>
-            </div>
-            <div class="color-item" onclick="selectColor('yellow', this)">
-                <div class="swatch" style="background: #ffb703;"></div>
-                <div class="color-label">상큼한 옐로우</div>
-            </div>
-            <div class="color-item" onclick="selectColor('white', this)">
-                <div class="swatch" style="background: #f8f9fa; border: 1px solid #ddd;"></div>
-                <div class="color-label">차분한 화이트</div>
-            </div>
-            <div class="color-item" onclick="selectColor('purple', this)">
-                <div class="swatch" style="background: #7b2cbf;"></div>
-                <div class="color-label">우아한 퍼플</div>
+    <!-- Step 2: Story -->
+    <div id="step-2" class="step">
+        <h2 class="section-title">무엇이 미안한지 짧게 적어주세요.</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">AI 코치가 당신의 사연을 분석해 완벽한 문장을 만듭니다.</p>
+        <textarea id="user-story" placeholder="예: 어제 술 마시고 연락 안 된 거 미안해, 바빠서 생일 못 챙겨준 거 후회돼 등"></textarea>
+        <button class="btn-action" onclick="goStep(3)">솔루션 확인하기</button>
+    </div>
+
+    <!-- Step 3: Solution Package -->
+    <div id="step-3" class="step">
+        <h2 class="section-title">전문가가 설계한 최적의 솔루션</h2>
+        <div class="package-card">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80" class="package-img" alt="Solution">
+            <div class="package-info">
+                <h3 id="package-name">[관계 회복 패키지]</h3>
+                <p style="color: #888; margin-top: 10px;">상황 맞춤 큐레이션 꽃 + AI 마음 통역 카드</p>
+                <div class="package-price">₩59,000</div>
+                <p style="font-size: 0.9rem; color: var(--point); margin-bottom: 20px;">
+                    * 연애 코치 AI가 입력하신 사연을 바탕으로<br><b>절대 실패하지 않는 완벽한 메시지</b>를 작성하여 동봉합니다.
+                </p>
+                <button class="btn-action" onclick="simulatePayment()" style="background: var(--point);">지금 결제하고 메시지 확인하기</button>
             </div>
         </div>
     </div>
 
-    <div id="result-section">
-        <div class="step-title"><span>3</span> 당신을 위한 맞춤형 추천</div>
-        <div id="product-list" class="product-grid">
-            <!-- 필터링된 결과 주입 -->
+    <!-- Step 4: Success / Reveal Message -->
+    <div id="step-4" class="step">
+        <div id="post-payment">
+            <div style="font-size: 3rem;">✅</div>
+            <h2 style="margin: 20px 0;">결제가 완료되었습니다!</h2>
+            <p>AI 연애 코치가 당신의 사연을 분석해 만든<br><b>최종 통역 메시지</b>를 확인하세요.</p>
+            
+            <div class="translated-card" id="final-message">
+                <!-- AI 번역 문구 노출 -->
+            </div>
+
+            <p style="font-size: 0.9rem; color: #888; margin-bottom: 30px;">
+                위 메시지는 최고급 카드로 인쇄되어 꽃과 함께 배송됩니다.
+            </p>
+            <button class="btn-action" onclick="location.reload()">새로운 솔루션 시작하기</button>
         </div>
     </div>
-</section>
+</main>
 
 <footer>
-    <div class="footer-links">
-        <a href="privacy.html">개인정보처리방침</a>
-        <a href="terms.html">이용약관</a>
+    <div style="margin-bottom: 20px;">
+        <a href="privacy.html" style="color:#999; text-decoration: none;">개인정보처리방침</a> | 
+        <a href="terms.html" style="color:#999; text-decoration: none;">이용약관</a>
     </div>
-    <p>&copy; 2026 알랑가 (Alangga). All rights reserved.</p>
+    <p>&copy; 2026 알랑가 (Alangga). No.1 Relationship Recovery Service.</p>
 </footer>
 
 <script>
-    // 1. 목업 데이터 (상품 DB)
-    const PRODUCTS = [
-        { id: 1, situations: ['apology'], colors: ['white', 'pink'], name: '진심의 백합 & 리시안셔스', price: '55,000', img: 'https://images.unsplash.com/photo-1508784411316-02b8cd4d3a3a?auto=format&fit=crop&w=600&q=80' },
-        { id: 2, situations: ['anniversary', 'apology'], colors: ['red'], name: '강렬한 고백, 레드장미', price: '69,000', img: 'https://images.unsplash.com/photo-1548610762-7c6abc94c031?auto=format&fit=crop&w=600&q=80' },
-        { id: 3, situations: ['office', 'celebrate'], colors: ['yellow', 'pink'], name: '응원의 햇살 거베라', price: '42,000', img: 'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=600&q=80' },
-        { id: 4, situations: ['anniversary'], colors: ['pink', 'purple'], name: '우아한 약속 작약 다발', price: '85,000', img: 'https://images.unsplash.com/photo-1563241527-3004b7be0fab?auto=format&fit=crop&w=600&q=80' },
-        { id: 5, situations: ['celebrate', 'office'], colors: ['white', 'yellow'], name: '축하의 정석 튤립 세트', price: '48,000', img: 'https://images.unsplash.com/photo-1520323232427-6b624831ea9b?auto=format&fit=crop&w=600&q=80' },
-        { id: 6, situations: ['anniversary', 'love'], colors: ['purple'], name: '신비로운 보랏빛 수국', price: '52,000', img: 'https://images.unsplash.com/photo-1567606191968-f7b7ad556077?auto=format&fit=crop&w=600&q=80' },
-        { id: 7, situations: ['apology', 'office'], colors: ['white'], name: '차분한 위로의 안개꽃', price: '38,000', img: 'https://images.unsplash.com/photo-1591886960571-74d43a9d4166?auto=format&fit=crop&w=600&q=80' }
-    ];
+    let selectedSituation = '';
 
-    const AI_PHRASES = {
-        'apology': ["말주변이 없어서 꽃으로 대신해. 미안해.", "화풀릴 때까지 기다릴게. 진심으로 미안해.", "내가 다 잘못했어. 다시 웃어주면 안 될까?"],
-        'anniversary': ["우리 함께한 모든 날이 꽃처럼 예뻤어.", "세상에서 네가 제일 예쁘지만, 이 꽃도 너 닮았어.", "앞으로도 매년 이 꽃이랑 같이 축하해주고 싶어."],
-        'office': ["오늘 하루도 고생 많았어! 힘내라고 보낸다.", "네 책상이 이 꽃처럼 환해졌으면 좋겠어. 화이팅!", "생각나서 보냈어. 커피 한 잔 하며 꽃 보며 쉬어."],
-        'celebrate': ["네가 이뤄낼 줄 알았어! 진심으로 축하해.", "오늘 주인공은 너야! 가장 빛나는 하루 보내.", "네 성공을 이 꽃들이 증명해주는 것 같아. 최고야!"]
-    };
-
-    // 2. 상태 관리 변수
-    let selectedSit = '';
-    let selectedCol = '';
-
-    // 3. UI 렌더링 및 인터랙션 로직
-    function selectSituation(sit, el) {
-        selectedSit = sit;
-        document.querySelectorAll('.sit-chip').forEach(c => c.classList.remove('active'));
-        el.classList.add('active');
+    // 상황 선택 및 단계 이동
+    function goStep(num, sit = '') {
+        if (sit) selectedSituation = sit;
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById(`step-${num}`).classList.add('active');
+        window.scrollTo({ top: 200, behavior: 'smooth' });
         
-        document.getElementById('color-section').style.display = 'block';
-        window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
-        
-        if (selectedCol) updateResults();
+        if(num === 3) {
+            document.getElementById('package-name').innerText = `[${selectedSituation}] 솔루션 패키지`;
+        }
     }
 
-    function selectColor(col, el) {
-        selectedCol = col;
-        document.querySelectorAll('.color-item').forEach(c => c.classList.remove('active'));
-        el.classList.add('active');
-        
-        document.getElementById('result-section').style.display = 'block';
-        updateResults();
-        window.scrollTo({ top: document.getElementById('result-section').offsetTop - 100, behavior: 'smooth' });
-    }
-
-    function updateResults() {
-        const filtered = PRODUCTS.filter(p => p.situations.includes(selectedSit) && p.colors.includes(selectedCol));
-        const listContainer = document.getElementById('product-list');
-        
-        if (filtered.length === 0) {
-            listContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">해당 조합의 맞춤 상품을 준비 중입니다. 다른 색상을 선택해 보세요!</p>';
+    // 결제 시뮬레이션 및 메시지 생성
+    function simulatePayment() {
+        const story = document.getElementById('user-story').value;
+        if (!story.trim()) {
+            alert("상대방에게 전할 핵심 사연을 입력해 주세요.");
+            goStep(2);
             return;
         }
 
-        listContainer.innerHTML = filtered.map(p => `
-            <div class="product-card">
-                <img src="${p.img}" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-name">${p.name}</h3>
-                    <p class="product-price">₩${p.price}</p>
-                    <div class="message-box">
-                        <button class="msg-btn" onclick="toggleMessage(this)">✨ 센스 있는 한 줄 메시지 추천받기</button>
-                        <div class="ai-message-area">
-                            ${AI_PHRASES[selectedSit].map(msg => `<div class="ai-option" onclick="copyMsg('${msg.replace(/'/g, "\\'")}')">${msg}</div>`).join('')}
-                            <p style="font-size: 0.7rem; color: #bbb; margin-top: 10px; text-align: center;">문구를 클릭하면 복사됩니다.</p>
-                        </div>
-                    </div>
-                    <button class="msg-btn" style="background: var(--primary); margin-top: 10px;" onclick="alert('결제 페이지로 이동합니다.')">지금 바로 주문하기</button>
-                </div>
-            </div>
-        `).join('');
+        // 결제 완료 후 메시지 노출 (비즈니스 로직)
+        const finalMsgArea = document.getElementById('final-message');
+        const aiMessage = generateAIMessage(selectedSituation, story);
+        finalMsgArea.innerText = aiMessage;
+
+        goStep(4);
     }
 
-    function toggleMessage(btn) {
-        const area = btn.nextElementSibling;
-        const isOpen = area.style.display === 'block';
-        area.style.display = isOpen ? 'none' : 'block';
-        btn.innerText = isOpen ? '✨ 센스 있는 한 줄 메시지 추천받기' : '닫기';
+    // AI 연애 코치 프롬프트 로직 시뮬레이션
+    function generateAIMessage(sit, story) {
+        // 실제로는 백엔드 API를 호출하나, MVP용 로직 구현
+        return `"${story}"라는 당신의 진심을 읽었습니다.\n\n말주변이 없어 꽃의 힘을 빌려봅니다. 미처 다 전하지 못한 제 진심이 이 꽃의 향기처럼 당신 곁에 부드럽게 머물기를 바랍니다.\n\n제가 다 잘못했습니다. 다시 우리 함께 웃을 수 있는 기회를 주세요.`;
     }
 
-    function copyMsg(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert("문구가 복사되었습니다! 주문 시 카드 메시지에 붙여넣으세요.");
-        });
+    // 카운트다운 타이머
+    function startTimer() {
+        let time = 3600 * 2.5; // 임의의 시간
+        setInterval(() => {
+            let h = Math.floor(time / 3600);
+            let m = Math.floor((time % 3600) / 60);
+            let s = time % 60;
+            document.getElementById('timer').innerText = 
+                `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            time--;
+        }, 1000);
     }
+
+    window.onload = startTimer;
 </script>
 
 </body>
