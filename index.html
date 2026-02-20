@@ -241,6 +241,35 @@
     </div>
 </main>
 
+<section class="container" style="margin-top: 60px; border-top: 1px solid #eee; padding-top: 60px; margin-bottom: 100px;">
+    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 15px; color: var(--secondary);">제휴 및 문의</h2>
+        <p style="color: #888; margin-bottom: 40px;">알랑가와 함께 진심을 전할 파트너를 찾습니다.</p>
+        
+        <form action="https://formspree.io/f/mpqjjynz" method="POST" style="text-align: left; background: #fff; padding: 40px; border-radius: 24px; box-shadow: var(--shadow);">
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; color: #444;">이메일 주소</label>
+                <input type="email" name="email" required placeholder="your@email.com" style="width: 100%; padding: 14px; border: 2px solid #f0f0f0; border-radius: 12px; font-size: 1rem;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; color: #444;">문의 유형</label>
+                <select name="type" style="width: 100%; padding: 14px; border: 2px solid #f0f0f0; border-radius: 12px; font-size: 1rem; background: #fff;">
+                    <option value="제휴">꽃집 입점/제휴 문의</option>
+                    <option value="기업">기업 단체 주문 문의</option>
+                    <option value="기타">기타 문의</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; color: #444;">문의 내용</label>
+                <textarea name="message" required placeholder="상세 내용을 적어주세요." style="width: 100%; padding: 14px; border: 2px solid #f0f0f0; border-radius: 12px; font-size: 1rem; height: 120px; resize: none;"></textarea>
+            </div>
+            <button type="submit" style="width: 100%; padding: 18px; background: var(--secondary); color: #fff; border: none; border-radius: 14px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s;">
+                문의 보내기
+            </button>
+        </form>
+    </div>
+</section>
+
 <div id="checkout-modal" class="modal">
     <div class="modal-content">
         <div class="modal-left">
