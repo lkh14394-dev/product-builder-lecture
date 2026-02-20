@@ -4,323 +4,230 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-1389709658199316">
-    <meta name="description" content="알랑가(Alangga)는 남성을 위한 가장 빠른 꽃 선물 및 AI 메시지 카드 서비스를 제공합니다. 상황별 맞춤 꽃 추천과 센스 있는 문구로 당신의 진심을 전하세요.">
-    <title>알랑가 (Alangga) - 감성을 전하는 가장 쉬운 방법</title>
+    <title>알랑가 (Alangga) - 상황별 맞춤 컬러 꽃 배달</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1389709658199316" crossorigin="anonymous"></script>
     <style>
         :root {
             --primary: #ff4d6d;
             --secondary: #212529;
-            --accent: #ff8fa3;
             --bg: #ffffff;
-            --section-bg: #fffcfc;
-            --text: #333333;
-            --shadow: 0 12px 40px rgba(255, 77, 109, 0.1);
+            --light-bg: #fffcfc;
+            --gray: #f1f3f5;
+            --text: #333;
+            --shadow: 0 10px 30px rgba(255, 77, 109, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg); color: var(--text); line-height: 1.7; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
 
         /* Navigation */
-        nav {
-            padding: 15px 5%;
-            background: rgba(255, 255, 255, 0.95);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #f0f0f0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-        nav .logo { font-size: 1.6rem; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -1px; }
-        nav .menu { display: flex; gap: 25px; }
-        nav .menu a { text-decoration: none; color: #555; font-size: 0.9rem; font-weight: 600; }
+        nav { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f0f0f0; position: sticky; top: 0; background: #fff; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); text-decoration: none; }
 
-        /* Hero Section */
-        .hero {
-            padding: 100px 5%;
-            text-align: center;
-            background: linear-gradient(135deg, #fff 0%, #fff5f6 100%);
-        }
-        .hero h1 { font-size: 2.8rem; font-weight: 900; margin-bottom: 20px; color: var(--secondary); letter-spacing: -1.5px; line-height: 1.2; }
-        .hero p { color: #666; font-size: 1.2rem; margin-bottom: 50px; }
+        /* Step Section Container */
+        .step-container { padding: 40px 5%; max-width: 1000px; margin: 0 auto; }
+        .step-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .step-title span { background: var(--primary); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
 
-        .situation-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            max-width: 900px;
-            margin: 0 auto;
+        /* Step 1: Situation Chips (Horizontal Scroll) */
+        .situation-scroll {
+            display: flex; gap: 12px; overflow-x: auto; padding: 10px 0 20px;
+            -ms-overflow-style: none; scrollbar-width: none;
         }
-        .sit-btn {
-            padding: 20px 30px;
-            border: 1px solid #ffccd5;
-            border-radius: 50px;
-            background: #fff;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.05);
+        .situation-scroll::-webkit-scrollbar { display: none; }
+        .sit-chip {
+            flex: 0 0 auto; padding: 15px 25px; background: var(--gray); border-radius: 50px;
+            font-weight: 700; cursor: pointer; transition: 0.3s; border: 2px solid transparent;
         }
-        .sit-btn:hover, .sit-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.2);
-        }
+        .sit-chip.active { background: var(--primary); color: white; border-color: var(--primary); transform: scale(1.05); }
 
-        /* Product Grid */
-        .container { max-width: 1200px; margin: 0 auto; padding: 100px 5%; }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 40px;
+        /* Step 2: Color Swatches */
+        #color-section { display: none; animation: fadeIn 0.5s ease forwards; margin-top: 20px; }
+        .color-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        .color-item { text-align: center; cursor: pointer; transition: 0.3s; }
+        .swatch {
+            width: 60px; height: 60px; border-radius: 50%; margin-bottom: 8px;
+            border: 3px solid transparent; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s; position: relative;
         }
+        .color-item:hover .swatch { transform: scale(1.1); }
+        .color-item.active .swatch { border-color: var(--secondary); transform: scale(1.1); }
+        .color-label { font-size: 0.8rem; font-weight: 600; color: #666; }
+
+        /* Step 3: Recommendation Results */
+        #result-section { display: none; margin-top: 60px; border-top: 1px solid #eee; padding-top: 60px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
         .product-card {
-            background: #fff;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.4s;
-            border: 1px solid #fef0f2;
+            background: #fff; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow);
+            border: 1px solid #fff0f3; transition: 0.3s;
         }
-        .product-card:hover { transform: translateY(-15px); box-shadow: 0 20px 50px rgba(255, 77, 109, 0.15); }
-        .product-img { width: 100%; height: 380px; object-fit: cover; }
-        .product-info { padding: 30px; text-align: center; }
-        .product-tag { font-size: 0.8rem; color: var(--primary); font-weight: 800; text-transform: uppercase; margin-bottom: 12px; display: block; }
-        .product-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; color: var(--secondary); }
-        .product-price { font-size: 1.2rem; font-weight: 600; color: #444; margin-bottom: 20px; }
-        
-        .buy-btn {
-            width: 100%;
-            padding: 18px;
-            background: var(--secondary);
-            color: #fff;
-            border: none;
-            border-radius: 18px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .buy-btn:hover { background: #000; letter-spacing: 1px; }
+        .product-img { width: 100%; height: 350px; object-fit: cover; }
+        .product-info { padding: 25px; }
+        .product-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+        .product-price { font-size: 1.1rem; color: #666; font-weight: 600; }
 
-        /* Modal Overhaul */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
+        /* Message Translator (Accordion) */
+        .message-box { margin-top: 20px; background: var(--light-bg); border-radius: 15px; padding: 20px; }
+        .msg-btn {
+            width: 100%; padding: 12px; background: var(--secondary); color: #fff; border: none;
+            border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 15px;
         }
-        .modal-content {
-            background: #fff;
-            width: 95%;
-            max-width: 1100px;
-            height: 90vh;
-            border-radius: 40px;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            overflow: hidden;
+        .ai-message-area { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; }
+        .ai-option {
+            padding: 12px; background: #fff; border: 1px solid #eee; border-radius: 10px;
+            margin-bottom: 8px; cursor: pointer; font-size: 0.9rem; transition: 0.2s;
         }
+        .ai-option:hover { border-color: var(--primary); color: var(--primary); }
 
-        .modal-left { padding: 50px; overflow-y: auto; background: #fff; }
-        .modal-right { padding: 50px; background: #fdf8f9; display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 1px solid #f0e0e2; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .editor-section { margin-top: 30px; }
-        .editor-label { font-size: 0.9rem; font-weight: 800; color: #444; margin-bottom: 15px; display: block; }
-        .message-editor {
-            width: 100%; height: 150px; padding: 20px; border: 2px solid #f0f0f0; border-radius: 20px;
-            font-size: 1.1rem; line-height: 1.6; resize: none; background: #fafafa; transition: 0.3s;
-        }
-        .message-editor:focus { outline: none; border-color: var(--primary); background: #fff; }
-
-        .template-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
-        .template-card {
-            padding: 15px; border: 1px solid #eee; border-radius: 15px; cursor: pointer; font-size: 0.85rem; background: #fff; transition: 0.2s;
-        }
-        .template-card:hover { border-color: var(--primary); background: #fffcfc; }
-        .template-card.active { border-color: var(--primary); background: #fff5f6; font-weight: 700; }
-
-        /* Card Preview Aesthetic */
-        .card-preview {
-            width: 100%; aspect-ratio: 4/5; background: #fff; border-radius: 5px; box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-            position: relative; border: 1px solid #e0e0e0;
-        }
-        .card-preview::before { content: ''; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; border: 1px solid #f0f0f0; pointer-events: none; }
-        .card-text { font-family: 'Gowun Batang', serif; font-size: 1.2rem; color: #333; line-height: 2; white-space: pre-wrap; word-break: keep-all; }
-
-        /* Footer */
-        footer { padding: 80px 5%; background: #111; color: #888; text-align: center; }
-        .footer-links a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 0.9rem; }
-
-        @media (max-width: 900px) {
-            .modal-content { grid-template-columns: 1fr; height: 95vh; }
-            .modal-right { padding: 30px; background: #fff; }
-            .card-preview { aspect-ratio: 16/9; }
-        }
+        footer { padding: 60px 5%; background: #111; color: #666; text-align: center; font-size: 0.8rem; margin-top: 100px; }
+        .footer-links { margin-bottom: 20px; }
+        .footer-links a { color: #999; text-decoration: none; margin: 0 10px; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <nav>
     <a href="#" class="logo">ALANGGA</a>
-    <div class="menu">
-        <a href="#shop">Shop</a>
-        <a href="#guide">Guide</a>
-        <a href="#contact">Contact</a>
-    </div>
 </nav>
 
-<section class="hero">
-    <span style="color: var(--primary); font-weight: 800; font-size: 0.9rem; letter-spacing: 2px;">PREMIUM FLOWER CURATION</span>
-    <h1>가장 예쁜 꽃에,<br>당신의 진심을 담아 보냅니다.</h1>
-    <p>받는 분의 마음까지 고려한 상황별 맞춤 큐레이션 서비스</p>
-    <div class="situation-buttons">
-        <button class="sit-btn" onclick="filterProducts('apology', this)">🚨 진심 어린 사과</button>
-        <button class="sit-btn" onclick="filterProducts('love', this)">❤️ 설레는 고백/기념일</button>
-        <button class="sit-btn" onclick="filterProducts('thanks', this)">🎁 따뜻한 감사/깜짝선물</button>
+<section class="step-container">
+    <div class="step-title"><span>1</span> 지금 어떤 상황이신가요?</div>
+    <div class="situation-scroll">
+        <div class="sit-chip" onclick="selectSituation('apology', this)">🚨 위기 탈출 사과</div>
+        <div class="sit-chip" onclick="selectSituation('anniversary', this)">💖 로맨틱한 기념일</div>
+        <div class="sit-chip" onclick="selectSituation('office', this)">🏢 직장 깜짝 배송</div>
+        <div class="sit-chip" onclick="selectSituation('celebrate', this)">👏 격하게 축하할 때</div>
+    </div>
+
+    <div id="color-section">
+        <div class="step-title"><span>2</span> 그녀가 좋아할 만한 색상을 골라주세요</div>
+        <div class="color-grid">
+            <div class="color-item" onclick="selectColor('red', this)">
+                <div class="swatch" style="background: #e63946;"></div>
+                <div class="color-label">강렬한 레드</div>
+            </div>
+            <div class="color-item" onclick="selectColor('pink', this)">
+                <div class="swatch" style="background: #ffb3c1;"></div>
+                <div class="color-label">파스텔 핑크</div>
+            </div>
+            <div class="color-item" onclick="selectColor('yellow', this)">
+                <div class="swatch" style="background: #ffb703;"></div>
+                <div class="color-label">상큼한 옐로우</div>
+            </div>
+            <div class="color-item" onclick="selectColor('white', this)">
+                <div class="swatch" style="background: #f8f9fa; border: 1px solid #ddd;"></div>
+                <div class="color-label">차분한 화이트</div>
+            </div>
+            <div class="color-item" onclick="selectColor('purple', this)">
+                <div class="swatch" style="background: #7b2cbf;"></div>
+                <div class="color-label">우아한 퍼플</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="result-section">
+        <div class="step-title"><span>3</span> 당신을 위한 맞춤형 추천</div>
+        <div id="product-list" class="product-grid">
+            <!-- 필터링된 결과 주입 -->
+        </div>
     </div>
 </section>
 
-<main id="shop" class="container">
-    <div id="product-list" class="product-grid">
-        <!-- JS로 상품 주입 -->
+<footer>
+    <div class="footer-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
     </div>
-</main>
-
-<!-- 결제 & 메시지 에디터 모달 -->
-<div id="checkout-modal" class="modal">
-    <div class="modal-content">
-        <div class="modal-left">
-            <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 5px;">메시지 완성하기</h2>
-            <p style="color: #888; font-size: 0.95rem; margin-bottom: 30px;">상황에 맞는 추천 문구를 선택하거나 직접 수정해보세요.</p>
-            
-            <div class="editor-section">
-                <span class="editor-label">상황별 추천 템플릿</span>
-                <div id="template-list" class="template-grid">
-                    <!-- 템플릿 칩 -->
-                </div>
-            </div>
-
-            <div class="editor-section">
-                <span class="editor-label">카드 문구 직접 수정</span>
-                <textarea id="message-input" class="message-editor" oninput="syncPreview(this.value)"></textarea>
-                <p style="font-size: 0.8rem; color: #aaa; margin-top: 8px;">* 입력하신 내용이 그대로 카드에 인쇄됩니다.</p>
-            </div>
-
-            <button class="buy-btn" onclick="completeOrder()" style="background: var(--primary); margin-top: 40px; padding: 22px; font-size: 1.2rem; box-shadow: 0 10px 30px rgba(255, 77, 109, 0.3);">
-                이대로 주문 완료하기
-            </button>
-            <button onclick="closeModal()" style="width:100%; background:none; border:none; color:#bbb; margin-top:20px; cursor:pointer; text-decoration:underline;">돌아가기</button>
-        </div>
-
-        <div class="modal-right">
-            <h3 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 20px; color: var(--primary);">메시지 카드 미리보기</h3>
-            <div class="card-preview">
-                <div id="preview-display" class="card-text"></div>
-            </div>
-            <p style="font-size: 0.75rem; color: #999; margin-top: 20px; text-align: center;">최고급 랑데뷰지에 인쇄되어<br>꽃다발과 함께 동봉됩니다.</p>
-        </div>
-    </div>
-</div>
+    <p>&copy; 2026 알랑가 (Alangga). All rights reserved.</p>
+</footer>
 
 <script>
+    // 1. 목업 데이터 (상품 DB)
     const PRODUCTS = [
-        { id: 1, category: 'apology', name: '순백의 용서, 백합', price: '59,000', tag: 'BEST FOR APOLOGY', img: 'https://images.unsplash.com/photo-1508784411316-02b8cd4d3a3a?auto=format&fit=crop&w=800&q=80' },
-        { id: 2, category: 'apology', name: '진심의 레드 장미', price: '65,000', tag: 'SINCERE HEART', img: 'https://images.unsplash.com/photo-1548610762-7c6abc94c031?auto=format&fit=crop&w=800&q=80' },
-        { id: 3, category: 'love', name: '첫사랑의 튤립', price: '52,000', tag: 'ROMANTIC MOMENT', img: 'https://images.unsplash.com/photo-1520323232427-6b624831ea9b?auto=format&fit=crop&w=800&q=80' },
-        { id: 4, category: 'love', name: '프리미엄 핑크 작약', price: '88,000', tag: 'ANNIVERSARY LUXURY', img: 'https://images.unsplash.com/photo-1563241527-3004b7be0fab?auto=format&fit=crop&w=800&q=80' },
-        { id: 5, category: 'thanks', name: '감사의 햇살 거베라', price: '45,000', tag: 'DAILY SURPRISE', img: 'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=800&q=80' },
-        { id: 6, category: 'thanks', name: '청초한 리시안셔스', price: '48,000', tag: 'SOFT GRATITUDE', img: 'https://images.unsplash.com/photo-1567606191968-f7b7ad556077?auto=format&fit=crop&w=800&q=80' }
+        { id: 1, situations: ['apology'], colors: ['white', 'pink'], name: '진심의 백합 & 리시안셔스', price: '55,000', img: 'https://images.unsplash.com/photo-1508784411316-02b8cd4d3a3a?auto=format&fit=crop&w=600&q=80' },
+        { id: 2, situations: ['anniversary', 'apology'], colors: ['red'], name: '강렬한 고백, 레드장미', price: '69,000', img: 'https://images.unsplash.com/photo-1548610762-7c6abc94c031?auto=format&fit=crop&w=600&q=80' },
+        { id: 3, situations: ['office', 'celebrate'], colors: ['yellow', 'pink'], name: '응원의 햇살 거베라', price: '42,000', img: 'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=600&q=80' },
+        { id: 4, situations: ['anniversary'], colors: ['pink', 'purple'], name: '우아한 약속 작약 다발', price: '85,000', img: 'https://images.unsplash.com/photo-1563241527-3004b7be0fab?auto=format&fit=crop&w=600&q=80' },
+        { id: 5, situations: ['celebrate', 'office'], colors: ['white', 'yellow'], name: '축하의 정석 튤립 세트', price: '48,000', img: 'https://images.unsplash.com/photo-1520323232427-6b624831ea9b?auto=format&fit=crop&w=600&q=80' },
+        { id: 6, situations: ['anniversary', 'love'], colors: ['purple'], name: '신비로운 보랏빛 수국', price: '52,000', img: 'https://images.unsplash.com/photo-1567606191968-f7b7ad556077?auto=format&fit=crop&w=600&q=80' },
+        { id: 7, situations: ['apology', 'office'], colors: ['white'], name: '차분한 위로의 안개꽃', price: '38,000', img: 'https://images.unsplash.com/photo-1591886960571-74d43a9d4166?auto=format&fit=crop&w=600&q=80' }
     ];
 
-    const TEMPLATES = {
-        'apology': [
-            { tone: '담백한 사과', text: '어제는 내가 정말 미안했어.\n생각할수록 내 마음이 안 좋네.\n이 꽃 보면서 화 조금만 풀어주라.' },
-            { tone: '츤데레 사과', text: '지나가다 예뻐서 샀어.\n어제 일은 내가 사과할게.\n이거 보고 대충 퉁치자.' },
-            { tone: '애교 섞인 사과', text: '내가 잘못했어어... 힝\n한 번만 봐주면 안 될까?\n맛있는 거 사 들고 기다릴게!' }
-        ],
-        'love': [
-            { tone: '낭만적인 고백', text: '너라는 꽃이 내 인생에 피어나서\n매일이 참 고맙고 행복해.\n우리 앞으로도 예쁘게 만나자.' },
-            { tone: '기념일 축하', text: '우리 벌써 이만큼이나 함께했네.\n늘 내 옆에 있어 줘서 고마워.\n세상에서 네가 제일 예쁘다!' }
-        ],
-        'thanks': [
-            { tone: '깜짝 응원', text: '오늘 하루도 정말 고생 많았어!\n네 책상이 이 꽃처럼 환해지길.\n항상 널 응원하고 있어.' },
-            { tone: '담백한 감사', text: '부족한 나를 늘 도와줘서 고마워.\n직접 말하기 쑥스러워 꽃으로 대신해.\n오늘 하루 행복하게 보내!' }
-        ]
+    const AI_PHRASES = {
+        'apology': ["말주변이 없어서 꽃으로 대신해. 미안해.", "화풀릴 때까지 기다릴게. 진심으로 미안해.", "내가 다 잘못했어. 다시 웃어주면 안 될까?"],
+        'anniversary': ["우리 함께한 모든 날이 꽃처럼 예뻤어.", "세상에서 네가 제일 예쁘지만, 이 꽃도 너 닮았어.", "앞으로도 매년 이 꽃이랑 같이 축하해주고 싶어."],
+        'office': ["오늘 하루도 고생 많았어! 힘내라고 보낸다.", "네 책상이 이 꽃처럼 환해졌으면 좋겠어. 화이팅!", "생각나서 보냈어. 커피 한 잔 하며 꽃 보며 쉬어."],
+        'celebrate': ["네가 이뤄낼 줄 알았어! 진심으로 축하해.", "오늘 주인공은 너야! 가장 빛나는 하루 보내.", "네 성공을 이 꽃들이 증명해주는 것 같아. 최고야!"]
     };
 
-    let currentCategory = 'apology';
+    // 2. 상태 관리 변수
+    let selectedSit = '';
+    let selectedCol = '';
 
-    function filterProducts(category, btn) {
-        currentCategory = category;
+    // 3. UI 렌더링 및 인터랙션 로직
+    function selectSituation(sit, el) {
+        selectedSit = sit;
+        document.querySelectorAll('.sit-chip').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        
+        document.getElementById('color-section').style.display = 'block';
+        window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
+        
+        if (selectedCol) updateResults();
+    }
+
+    function selectColor(col, el) {
+        selectedCol = col;
+        document.querySelectorAll('.color-item').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        
+        document.getElementById('result-section').style.display = 'block';
+        updateResults();
+        window.scrollTo({ top: document.getElementById('result-section').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function updateResults() {
+        const filtered = PRODUCTS.filter(p => p.situations.includes(selectedSit) && p.colors.includes(selectedCol));
         const listContainer = document.getElementById('product-list');
-        document.querySelectorAll('.sit-btn').forEach(b => b.classList.remove('active'));
-        if(btn) btn.classList.add('active');
+        
+        if (filtered.length === 0) {
+            listContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">해당 조합의 맞춤 상품을 준비 중입니다. 다른 색상을 선택해 보세요!</p>';
+            return;
+        }
 
-        const filtered = PRODUCTS.filter(p => p.category === category);
         listContainer.innerHTML = filtered.map(p => `
             <div class="product-card">
                 <img src="${p.img}" class="product-img">
                 <div class="product-info">
-                    <span class="product-tag">${p.tag}</span>
                     <h3 class="product-name">${p.name}</h3>
                     <p class="product-price">₩${p.price}</p>
-                    <button class="buy-btn" onclick="openModal()">주문 및 메시지 작성</button>
+                    <div class="message-box">
+                        <button class="msg-btn" onclick="toggleMessage(this)">✨ 센스 있는 한 줄 메시지 추천받기</button>
+                        <div class="ai-message-area">
+                            ${AI_PHRASES[selectedSit].map(msg => `<div class="ai-option" onclick="copyMsg('${msg.replace(/'/g, "\\'")}')">${msg}</div>`).join('')}
+                            <p style="font-size: 0.7rem; color: #bbb; margin-top: 10px; text-align: center;">문구를 클릭하면 복사됩니다.</p>
+                        </div>
+                    </div>
+                    <button class="msg-btn" style="background: var(--primary); margin-top: 10px;" onclick="alert('결제 페이지로 이동합니다.')">지금 바로 주문하기</button>
                 </div>
             </div>
         `).join('');
     }
 
-    function openModal() {
-        document.getElementById('checkout-modal').style.display = 'flex';
-        renderTemplates();
+    function toggleMessage(btn) {
+        const area = btn.nextElementSibling;
+        const isOpen = area.style.display === 'block';
+        area.style.display = isOpen ? 'none' : 'block';
+        btn.innerText = isOpen ? '✨ 센스 있는 한 줄 메시지 추천받기' : '닫기';
     }
 
-    function closeModal() { document.getElementById('checkout-modal').style.display = 'none'; }
-
-    function renderTemplates() {
-        const container = document.getElementById('template-list');
-        const items = TEMPLATES[currentCategory];
-        container.innerHTML = items.map((t, idx) => `
-            <div class="template-card" onclick="applyTemplate(this, '${t.text.replace(/\n/g, '\\n')}')">
-                <strong style="color:var(--primary); display:block; margin-bottom:5px;">${t.tone}</strong>
-                <p style="color:#777; font-size:0.75rem;">${t.text.substring(0, 20)}...</p>
-            </div>
-        `).join('');
-        // 초기 첫번째 템플릿 적용
-        applyTemplate(container.children[0], items[0].text);
+    function copyMsg(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("문구가 복사되었습니다! 주문 시 카드 메시지에 붙여넣으세요.");
+        });
     }
-
-    function applyTemplate(el, text) {
-        document.querySelectorAll('.template-card').forEach(c => c.classList.remove('active'));
-        el.classList.add('active');
-        document.getElementById('message-input').value = text;
-        syncPreview(text);
-    }
-
-    function syncPreview(text) {
-        document.getElementById('preview-display').innerHTML = text.replace(/\n/g, '<br>');
-    }
-
-    function completeOrder() {
-        alert("성공적으로 주문되었습니다!\n선택하신 꽃과 진심이 담긴 카드를 정성껏 배송해 드릴게요.");
-        closeModal();
-    }
-
-    // 초기 실행
-    window.onload = () => filterProducts('apology', document.querySelector('.sit-btn'));
 </script>
 
 </body>
