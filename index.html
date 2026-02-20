@@ -78,11 +78,16 @@
         }
         .btn-action:hover { background: var(--point); transform: translateY(-3px); }
 
-        /* Post-Payment Section */
-        #post-payment { text-align: center; padding: 40px; background: #fdfdfd; border: 2px dashed var(--gold); border-radius: 20px; }
+        /* Post-payment Section Refinement */
+        #post-payment { text-align: center; padding: 40px; background: #fff; border: 1px solid #eee; border-radius: 30px; box-shadow: var(--shadow); }
+        .poem-quote {
+            font-style: italic; color: var(--point); font-size: 1.1rem; margin-bottom: 20px; padding: 0 20px;
+            line-height: 1.5; border-left: 3px solid var(--point); display: inline-block; text-align: left;
+        }
         .translated-card {
-            background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            font-family: 'Gowun Batang', serif; font-size: 1.3rem; line-height: 1.8; color: #444; margin: 30px 0;
+            background: #fffcfc; padding: 40px; border-radius: 10px; box-shadow: inset 0 0 50px rgba(0,0,0,0.02);
+            font-family: 'Gowun Batang', serif; font-size: 1.2rem; line-height: 2; color: #333; margin: 20px 0;
+            text-align: left; border: 1px solid #f0f0f0;
         }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -111,15 +116,15 @@
     <div id="step-1" class="step active">
         <h2 class="section-title">지금 어떤 문제에 직면해 계신가요?</h2>
         <div class="grid-buttons">
-            <button class="btn-solution" onclick="goStep(2, '어제 크게 다툼')">
+            <button class="btn-solution" onclick="goStep(2, 'apology')">
                 <h3>🚨 어제 크게 다퉜을 때</h3>
                 <p>냉전 중인 관계를 즉시 해제하는 긴급 처방</p>
             </button>
-            <button class="btn-solution" onclick="goStep(2, '기념일/약속 망침')">
+            <button class="btn-solution" onclick="goStep(2, 'anniversary')">
                 <h3>📅 소중한 날을 망쳤을 때</h3>
                 <p>실망감을 감동으로 바꾸는 역전 솔루션</p>
             </button>
-            <button class="btn-solution" onclick="goStep(2, '요즘 너무 소홀함')">
+            <button class="btn-solution" onclick="goStep(2, 'negligence')">
                 <h3>🏢 요즘 너무 바빠 신경 못 썼을 때</h3>
                 <p>익숙함 속에 숨겨진 고마움을 전하는 회복탄력성</p>
             </button>
@@ -141,10 +146,10 @@
             <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80" class="package-img" alt="Solution">
             <div class="package-info">
                 <h3 id="package-name">[관계 회복 패키지]</h3>
-                <p style="color: #888; margin-top: 10px;">상황 맞춤 큐레이션 꽃 + AI 마음 통역 카드</p>
+                <p style="color: #888; margin-top: 10px;">상황 맞춤 큐레이션 꽃 + 감성 마음 통역 카드</p>
                 <div class="package-price">₩59,000</div>
                 <p style="font-size: 0.9rem; color: var(--point); margin-bottom: 20px;">
-                    * 연애 코치 AI가 입력하신 사연을 바탕으로<br><b>절대 실패하지 않는 완벽한 메시지</b>를 작성하여 동봉합니다.
+                    * 입력하신 사연을 바탕으로, <b>시 구절과 꽃말</b>을 담은<br>가장 진정성 있는 메시지를 생성하여 발송합니다.
                 </p>
                 <button class="btn-action" onclick="simulatePayment()" style="background: var(--point);">지금 결제하고 메시지 확인하기</button>
             </div>
@@ -154,16 +159,15 @@
     <!-- Step 4: Success / Reveal Message -->
     <div id="step-4" class="step">
         <div id="post-payment">
-            <div style="font-size: 3rem;">✅</div>
-            <h2 style="margin: 20px 0;">결제가 완료되었습니다!</h2>
-            <p>AI 연애 코치가 당신의 사연을 분석해 만든<br><b>최종 통역 메시지</b>를 확인하세요.</p>
+            <div style="font-size: 3rem; margin-bottom: 10px;">💌</div>
+            <h2 style="margin-bottom: 10px;">진심이 완성되었습니다</h2>
+            <p style="color: #666; margin-bottom: 30px;">당신의 사연을 바탕으로 정성껏 다듬은 문구입니다.</p>
             
-            <div class="translated-card" id="final-message">
-                <!-- AI 번역 문구 노출 -->
-            </div>
+            <div id="poem-area" class="poem-quote"></div>
+            <div class="translated-card" id="final-message"></div>
 
-            <p style="font-size: 0.9rem; color: #888; margin-bottom: 30px;">
-                위 메시지는 최고급 카드로 인쇄되어 꽃과 함께 배송됩니다.
+            <p style="font-size: 0.85rem; color: #999; margin-bottom: 30px;">
+                * 이 메시지는 고급 수입지에 인쇄되어 꽃다발과 함께 전달됩니다.
             </p>
             <button class="btn-action" onclick="location.reload()">새로운 솔루션 시작하기</button>
         </div>
@@ -181,7 +185,20 @@
 <script>
     let selectedSituation = '';
 
-    // 상황 선택 및 단계 이동
+    const POETRY_DB = [
+        { quote: "자세히 보아야 예쁘다. 오래 보아야 사랑스럽다. 너도 그렇다.", author: "나태주, 풀꽃" },
+        { quote: "사랑하는 것은 사랑을 받느니보다 행복하나니라.", author: "유치환, 행복" },
+        { quote: "사람이 온다는 건 실은 어마어마한 일이다. 그는 그의 과거와 현재와 그리고 그의 미래와 함께 오기 때문이다.", author: "정현종, 방문객" },
+        { quote: "내려갈 때 보았네. 올라갈 때 보지 못한 그 꽃.", author: "고은, 그 꽃" }
+    ];
+
+    const FLOWER_DB = [
+        { name: "리시안셔스", meaning: "변치 않는 사랑" },
+        { name: "안개꽃", meaning: "맑은 마음" },
+        { name: "튤립", meaning: "사랑의 고백" },
+        { name: "스타티스", meaning: "영원한 사랑" }
+    ];
+
     function goStep(num, sit = '') {
         if (sit) selectedSituation = sit;
         document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
@@ -189,42 +206,43 @@
         window.scrollTo({ top: 200, behavior: 'smooth' });
         
         if(num === 3) {
-            document.getElementById('package-name').innerText = `[${selectedSituation}] 솔루션 패키지`;
+            const sitMap = { 'apology': '긴급 화해', 'anniversary': '기념일 역전', 'negligence': '관계 회복' };
+            document.getElementById('package-name').innerText = `[${sitMap[selectedSituation] || '맞춤'}] 솔루션 패키지`;
         }
     }
 
-    // 결제 시뮬레이션 및 메시지 생성
     function simulatePayment() {
         const story = document.getElementById('user-story').value;
         if (!story.trim()) {
-            alert("상대방에게 전할 핵심 사연을 입력해 주세요.");
+            alert("상대방에게 전할 사연을 짧게라도 입력해 주세요.");
             goStep(2);
             return;
         }
 
-        // 결제 완료 후 메시지 노출 (비즈니스 로직)
-        const finalMsgArea = document.getElementById('final-message');
-        const aiMessage = generateAIMessage(selectedSituation, story);
-        finalMsgArea.innerText = aiMessage;
+        const poem = POETRY_DB[Math.floor(Math.random() * POETRY_DB.length)];
+        const flower = FLOWER_DB[Math.floor(Math.random() * FLOWER_DB.length)];
+        
+        document.getElementById('poem-area').innerText = `'${poem.quote}' (${poem.author})`;
+        document.getElementById('final-message').innerText = generateLetter(story, poem, flower);
 
         goStep(4);
     }
 
-    // AI 연애 코치 프롬프트 로직 시뮬레이션
-    function generateAIMessage(sit, story) {
-        // 실제로는 백엔드 API를 호출하나, MVP용 로직 구현
-        return `"${story}"라는 당신의 진심을 읽었습니다.\n\n말주변이 없어 꽃의 힘을 빌려봅니다. 미처 다 전하지 못한 제 진심이 이 꽃의 향기처럼 당신 곁에 부드럽게 머물기를 바랍니다.\n\n제가 다 잘못했습니다. 다시 우리 함께 웃을 수 있는 기회를 주세요.`;
+    function generateLetter(story, poem, flower) {
+        // 일상적인 따뜻한 말투로 변환 (MVP 로직)
+        const cleanStory = story.replace(/미안해|미안하다/g, "정말 미안한 마음뿐이야")
+                                .replace(/고마워/g, "항상 고맙게 생각해");
+
+        return `요새 ${cleanStory}.\n\n'${poem.quote.substring(0, 15)}...'라는 시 구절을 보는데, 문득 네 생각이 났어. 우리가 함께하는 시간이 당연한 게 아닌데 내가 잠시 소홀했던 것 같아.\n\n${flower.meaning}이라는 꽃말을 가진 ${flower.name}를 골라봤어. 내 마음도 이 꽃말과 같아. 서운하게 해서 미안하고, 앞으로는 네 곁에서 더 소중히 챙길게. 사랑해.`;
     }
 
-    // 카운트다운 타이머
     function startTimer() {
-        let time = 3600 * 2.5; // 임의의 시간
+        let time = 3600 * 2.5;
         setInterval(() => {
             let h = Math.floor(time / 3600);
             let m = Math.floor((time % 3600) / 60);
             let s = time % 60;
-            document.getElementById('timer').innerText = 
-                `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            document.getElementById('timer').innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
             time--;
         }, 1000);
     }
