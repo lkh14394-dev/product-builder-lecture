@@ -1,111 +1,620 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="무료 로또 번호 생성기. 1부터 45까지의 숫자 중 6개를 무작위로 추출하여 행운의 번호를 제안해드립니다. 로또 통계와 확률 정보도 확인하세요.">
-    <meta name="google-adsense-account" content="ca-pub-1389709658199316">
-    <title>로또 번호 생성기 - 무료 로또 6/45 추천</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1389709658199316"
-     crossorigin="anonymous"></script>
-    <link href='style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알랑가 (Alangga) - 마음 번역 & 꽃 추천</title>
+    <style>
+        :root {
+            --primary: #ff8fa3;
+            --primary-light: #fff0f3;
+            --secondary: #ffb3c1;
+            --accent: #fb6f92;
+            --text: #4a4a4a;
+            --bg: #fffcfc;
+            --card-bg: #ffffff;
+            --border: #ffe5ec;
+            --shadow: 0 4px 12px rgba(255, 143, 163, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #888;
+            font-size: 1rem;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        select, input[type="text"], textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(251, 111, 146, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 111, 146, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Result Section */
+        #result-section {
+            display: none;
+        }
+
+        .flower-sets {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .flower-sets {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+
+        .flower-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .flower-card h3 {
+            margin-bottom: 15px;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .palette {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .flower-list {
+            margin-bottom: 15px;
+        }
+
+        .flower-item {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .flower-reasoning {
+            font-size: 0.85rem;
+            color: #666;
+            background: var(--primary-light);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .letter-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .letter-type {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .copy-btn {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .letter-body {
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .short-phrase {
+            background: #fdf2f4;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .caution {
+            font-size: 0.8rem;
+            color: #d63031;
+            margin-top: 8px;
+        }
+
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="/" class="logo">로또 생성기</a>
-            <div class="nav-links">
-                <a href="#about">소개</a>
-                <a href="#probability">확률 정보</a>
-                <a href="#contact-section">문의</a>
-            </div>
-            <button id="theme-toggle">다크 모드</button>
+
+<div class="container">
+    <header>
+        <h1>알랑가 (Alangga)</h1>
+        <p>꽃으로 전하는 당신의 진심, 마음 번역기</p>
+    </header>
+
+    <div id="input-section" class="section-card">
+        <h2>💌 편지 작성하기</h2>
+        <div class="form-group">
+            <label>누구에게 전하시나요?</label>
+            <select id="recipient">
+                <option value="연인">연인</option>
+                <option value="가족">가족</option>
+                <option value="친구">친구</option>
+                <option value="동료">동료</option>
+                <option value="거래처">거래처</option>
+                <option value="선생님">선생님</option>
+                <option value="기타">기타</option>
+            </select>
         </div>
-    </nav>
 
-    <main class="container">
-        <section class="hero-section">
-            <h1>로또 번호 생성기</h1>
-            <p class="subtitle">행운의 숫자 6개를 지금 바로 확인해보세요!</p>
-            <div class="generator-box">
-                <button id="generator-btn">번호 생성하기</button>
-                <div id="numbers-container"></div>
+        <div class="form-group">
+            <label>어떤 목적인가요?</label>
+            <select id="purpose">
+                <option value="사과">사과 (Apology)</option>
+                <option value="감사">감사 (Gratitude)</option>
+                <option value="축하">축하 (Celebration)</option>
+                <option value="위로">위로 (Comfort)</option>
+                <option value="고백">고백 (Love)</option>
+                <option value="응원">응원 (Support)</option>
+                <option value="이별">이별 (Farewell)</option>
+                <option value="재회">재회 (Reunion)</option>
+                <option value="부탁">부탁 (Request)</option>
+                <option value="기타">기타</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>지금 느끼는 감정 (중복 선택)</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="미안함"> 미안함</label>
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="고마움"> 고마움</label>
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="그리움"> 그리움</label>
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="설렘"> 설렘</label>
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="존중"> 존중</label>
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="아쉬움"> 아쉬움</label>
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="따뜻함"> 따뜻함</label>
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="응원"> 응원</label>
+                <label class="checkbox-item"><input type="checkbox" name="emotion" value="결심"> 결심</label>
             </div>
-        </section>
+        </div>
 
-        <section id="about" class="info-section">
-            <h2>로또 번호 생성기란?</h2>
-            <p>
-                본 로또 번호 생성기는 1부터 45까지의 숫자 중에서 중복되지 않는 6개의 숫자를 무작위로 추출하여 제공하는 무료 웹 도구입니다. 
-                매주 토요일 추첨되는 로또 6/45 복권 구매 시 어떤 번호를 선택할지 고민되는 분들을 위해 제작되었습니다.
-            </p>
-            <p>
-                컴퓨터 알고리즘을 활용한 완전 무작위 방식(Random Number Generation)을 채택하여, 
-                사람의 심리적 편향(특정 숫자 선호 등)을 배제한 순수한 우연의 조합을 제안합니다.
-            </p>
-        </section>
+        <div class="form-group">
+            <label>원하는 말투</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="tone" value="담백" checked> 담백하게</label>
+                <label class="radio-item"><input type="radio" name="tone" value="따뜻"> 따뜻하게</label>
+                <label class="radio-item"><input type="radio" name="tone" value="격식"> 격식있게</label>
+                <label class="radio-item"><input type="radio" name="tone" value="문학적"> 문학적으로</label>
+            </div>
+        </div>
 
-        <section id="probability" class="info-section">
-            <h2>로또 당첨 확률과 팁</h2>
-            <article>
-                <h3>1등 당첨 확률은?</h3>
-                <p>
-                    로또 6/45의 1등 당첨 확률은 약 <strong>814만 5060분의 1</strong>입니다. 
-                    이는 벼락을 맞을 확률보다 낮다고 알려져 있지만, 매주 수많은 당첨자가 탄생하는 희망의 상징이기도 합니다.
-                </p>
-            </article>
-            <article>
-                <h3>책임감 있는 게임</h3>
-                <p>
-                    복권은 소액으로 건전하게 즐기는 것이 가장 중요합니다. 
-                    본 생성기가 제공하는 번호는 통계적 당첨 보장을 의미하지 않으므로, 과도한 몰입을 지양하고 재미로만 즐겨주세요.
-                </p>
-            </article>
-        </section>
+        <div class="form-group">
+            <label>분량</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="length" value="짧게"> 짧게</label>
+                <label class="radio-item"><input type="radio" name="length" value="보통" checked> 보통</label>
+                <label class="radio-item"><input type="radio" name="length" value="길게"> 길게</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>꼭 포함할 문장 (선택)</label>
+            <input type="text" id="must-include" placeholder="예: 우리 그때 참 좋았는데, 밥 한 번 먹자">
+        </div>
+
+        <div class="form-group">
+            <label>피하고 싶은 표현 (선택)</label>
+            <input type="text" id="avoid-express" placeholder="예: 미안하다는 말, 너무 오글거리는 표현">
+        </div>
+
+        <div class="form-group">
+            <label>편지 초안 (필수)</label>
+            <textarea id="draft" rows="5" placeholder="전하고 싶은 내용을 자유롭게 적어주세요. 저희가 예쁘게 다듬어 드릴게요."></textarea>
+        </div>
+
+        <div class="btn-container">
+            <button id="generate-btn" class="btn btn-primary">추천/리라이팅 생성</button>
+        </div>
+    </div>
+
+    <div id="result-section">
+        <div class="section-card">
+            <h2>🌸 이 마음을 닮은 꽃 조합</h2>
+            <div id="flower-results" class="flower-sets">
+                <!-- 꽃 추천 카드가 여기에 삽입됨 -->
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>✍️ 당신을 위한 세 가지 문장</h2>
+            <div id="letter-results">
+                <!-- 리라이팅 결과가 여기에 삽입됨 -->
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>✨ 짧은 한 줄 문구</h2>
+            <div id="phrase-results">
+                <!-- 짧은 문구가 여기에 삽입됨 -->
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button id="reset-btn" class="btn btn-secondary">새로 작성하기</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const FLOWER_DATA = [
+        { name: "장미", colors: ["#e63946", "#ffb3c1", "#ffffff"], hex: ["#e63946", "#ffb3c1", "#ffffff"], meanings: ["사랑", "행복", "존경"], tags: ["고백", "감사", "존중", "축하"], caution: "가시가 있으니 다룰 때 주의하세요." },
+        { name: "튤립", colors: ["#d00000", "#ffb703", "#7b2cbf"], hex: ["#d00000", "#ffb703", "#7b2cbf"], meanings: ["사랑의 고백", "희망", "영원한 애정"], tags: ["고백", "응원", "감사", "축하"], caution: "온도에 민감해 금방 피어날 수 있어요." },
+        { name: "카네이션", colors: ["#ff4d6d", "#c9184a", "#ffffff"], hex: ["#ff4d6d", "#c9184a", "#ffffff"], meanings: ["감사", "모정", "존경"], tags: ["감사", "존중", "가족"], caution: "습기에 약하니 물이 잎에 닿지 않게 해주세요." },
+        { name: "거베라", colors: ["#ff70a6", "#ff9770", "#ffd670"], hex: ["#ff70a6", "#ff9770", "#ffd670"], meanings: ["신비", "수수께끼", "희망"], tags: ["축하", "응원", "감사"], caution: "줄기가 잘 부러질 수 있어 고정이 필요해요." },
+        { name: "안개꽃", colors: ["#ffffff", "#ffc8dd"], hex: ["#ffffff", "#ffc8dd"], meanings: ["맑은 마음", "사랑의 성공"], tags: ["고백", "응원", "사과", "부탁"], caution: "특유의 향이 호불호가 갈릴 수 있어요." },
+        { name: "리시안셔스", colors: ["#cdb4db", "#ffafcc", "#ffffff"], hex: ["#cdb4db", "#ffafcc", "#ffffff"], meanings: ["변치 않는 사랑", "우아함"], tags: ["고백", "감사", "사과", "재회"], caution: "꽃잎이 얇아 쉽게 상처 입을 수 있어요." },
+        { name: "프리지아", colors: ["#ffea00"], hex: ["#ffea00"], meanings: ["당신의 시작을 응원해", "천진난만"], tags: ["응원", "축하", "기타"], caution: "향이 강해 식사 자리에는 피하는 게 좋아요." },
+        { name: "해바라기", colors: ["#ffb700"], hex: ["#ffb700"], meanings: ["기다림", "숭배", "일편단심"], tags: ["고백", "응원", "재회"], caution: "머리가 무거워 줄기가 휠 수 있어요." },
+        { name: "수국", colors: ["#a2d2ff", "#ffafcc", "#bde0fe"], hex: ["#a2d2ff", "#ffafcc", "#bde0fe"], meanings: ["진심", "변덕", "냉정"], tags: ["사과", "감사", "이별"], caution: "물을 아주 많이 먹는 꽃이에요." },
+        { name: "작약", colors: ["#ff8fa3", "#ff4d6d"], hex: ["#ff8fa3", "#ff4d6d"], meanings: ["수줍음", "부귀"], tags: ["고백", "감사", "축하"], caution: "개화 속도가 매우 빠릅니다." },
+        { name: "라넌큘러스", colors: ["#ffccd5", "#ffb3c1", "#ff8fa3"], hex: ["#ffccd5", "#ffb3c1", "#ff8fa3"], meanings: ["매력", "매혹"], tags: ["고백", "축하"], caution: "줄기가 약해 지지대가 필요할 수 있어요." },
+        { name: "백합", colors: ["#ffffff"], hex: ["#ffffff"], meanings: ["순결", "변함없는 사랑"], tags: ["존중", "위로", "이별"], caution: "향이 강하고 꽃가루가 옷에 묻으면 지우기 힘들어요." },
+        { name: "스톡", colors: ["#f8ad9d", "#fbc4ab"], hex: ["#f8ad9d", "#fbc4ab"], meanings: ["영원한 아름다움", "역경 속의 믿음"], tags: ["고백", "응원", "위로"], caution: "시든 꽃잎을 바로 제거해줘야 해요." },
+        { name: "델피늄", colors: ["#4895ef", "#4cc9f0"], hex: ["#4895ef", "#4cc9f0"], meanings: ["당신을 행복하게 해줄게요"], tags: ["응원", "고백", "축하"], caution: "독성이 있을 수 있으니 반려동물을 주의하세요." },
+        { name: "유칼립투스", colors: ["#95d5b2", "#74c69d"], hex: ["#95d5b2", "#74c69d"], meanings: ["치유", "추억"], tags: ["위로", "응원", "이별"], caution: "말랐을 때 부스러지기 쉽습니다." }
+    ];
+
+    const COLOR_MAP = {
+        "사과": ["#ffffff", "#cdb4db", "#a2d2ff"], // 화이트, 연보라, 연블루
+        "감사": ["#ffafcc", "#ffccd5", "#ffc8dd"], // 핑크, 연핑크
+        "축하": ["#ffea00", "#ff9770", "#ff70a6"], // 옐로우, 오렌지
+        "위로": ["#95d5b2", "#ffffff", "#bde0fe"], // 그린, 화이트, 스카이
+        "고백": ["#e63946", "#ff4d6d", "#ff8fa3"], // 레드, 진핑크
+        "응원": ["#ffb700", "#4cc9f0", "#ffea00"], // 옐로우, 블루
+        "이별": ["#ffffff", "#95d5b2", "#cdb4db"], // 화이트, 그린, 보라
+        "재회": ["#ffb3c1", "#cdb4db", "#ffffff"], // 핑크, 보라, 화이트
+        "부탁": ["#ffffff", "#ffafcc", "#bde0fe"], // 화이트, 핑크, 연블루
+    };
+
+    const generateBtn = document.getElementById('generate-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const inputSection = document.getElementById('input-section');
+    const resultSection = document.getElementById('result-section');
+
+    generateBtn.addEventListener('click', () => {
+        const draft = document.getElementById('draft').value;
+        if (!draft.trim()) {
+            alert("편지 초안을 입력해주세요!");
+            return;
+        }
+
+        const data = {
+            recipient: document.getElementById('recipient').value,
+            purpose: document.getElementById('purpose').value,
+            emotions: Array.from(document.querySelectorAll('input[name="emotion"]:checked')).map(el => el.value),
+            tone: document.querySelector('input[name="tone"]:checked').value,
+            length: document.querySelector('input[name="length"]:checked').value,
+            mustInclude: document.getElementById('must-include').value,
+            avoid: document.getElementById('avoid-express').value,
+            draft: draft
+        };
+
+        const flowerSets = recommendFlowers(data);
+        const letterVersions = rewriteLetter(data, flowerSets[0]);
+        const shortPhrases = generateShortPhrases(data, flowerSets[0]);
+
+        renderResults(flowerSets, letterVersions, shortPhrases);
+
+        inputSection.style.display = 'none';
+        resultSection.style.display = 'block';
+        window.scrollTo(0, 0);
+    });
+
+    resetBtn.addEventListener('click', () => {
+        document.getElementById('draft').value = '';
+        document.getElementById('must-include').value = '';
+        document.getElementById('avoid-express').value = '';
+        document.querySelectorAll('input[name="emotion"]').forEach(el => el.checked = false);
+        inputSection.style.display = 'block';
+        resultSection.style.display = 'none';
+    });
+
+    function recommendFlowers(data) {
+        // Simple scoring logic
+        const scoredFlowers = FLOWER_DATA.map(flower => {
+            let score = 0;
+            // Match by tags
+            if (flower.tags.includes(data.purpose)) score += 5;
+            data.emotions.forEach(emo => {
+                if (flower.tags.includes(emo)) score += 2;
+            });
+            // Relationship specific
+            if (data.recipient === "가족" && flower.name === "카네이션") score += 3;
+            if (data.recipient === "연인" && ["장미", "튤립", "작약", "라넌큘러스"].includes(flower.name)) score += 2;
+            
+            return { ...flower, score: score + Math.random() }; // Randomness for variety
+        });
+
+        scoredFlowers.sort((a, b) => b.score - a.score);
+
+        // Create 3 sets
+        const sets = [
+            {
+                name: `${data.purpose}의 진심을 담은 조합`,
+                palette: COLOR_MAP[data.purpose] || ["#ffb3c1", "#ffccd5", "#ffffff"],
+                flowers: scoredFlowers.slice(0, 4),
+                reasoning: `${data.recipient}님께 ${data.purpose}하는 마음을 담아, ${scoredFlowers[0].meanings[0]}과 ${scoredFlowers[1].meanings[0]}의 의미를 결합했습니다.`,
+                caution: scoredFlowers[0].caution
+            },
+            {
+                name: `따뜻한 ${data.emotions[0] || '진심'}의 조화`,
+                palette: [scoredFlowers[2].hex[0], scoredFlowers[3].hex[0], "#ffffff"],
+                flowers: [scoredFlowers[2], scoredFlowers[3], scoredFlowers[4], scoredFlowers[5]].filter(Boolean),
+                reasoning: `부담스럽지 않으면서도 깊은 배려가 느껴지는 조합입니다. ${scoredFlowers[2].name}의 ${scoredFlowers[2].meanings[0]} 꽃말이 포인트입니다.`,
+                caution: scoredFlowers[2].caution
+            },
+            {
+                name: `우아하고 격식 있는 선택`,
+                palette: ["#ffffff", "#cdb4db", "#95d5b2"],
+                flowers: scoredFlowers.slice(4, 8).filter(Boolean).length > 0 ? scoredFlowers.slice(4, 8) : scoredFlowers.slice(1, 4),
+                reasoning: `차분한 톤으로 진중함을 더했습니다. ${data.recipient}님과의 관계에 신뢰를 더해줄 것입니다.`,
+                caution: "꽃의 향이 섞이지 않도록 신선한 상태를 유지해주세요."
+            }
+        ];
+
+        return sets;
+    }
+
+    function rewriteLetter(data, bestFlowerSet) {
+        const flowerNames = bestFlowerSet.flowers.slice(0, 2).map(f => f.name).join(', ');
+        const mainMeaning = bestFlowerSet.flowers[0].meanings[0];
         
-        <section id="contact-section" class="contact-section">
-            <h2>제휴 문의</h2>
-            <p>서비스 개선 제안이나 광고/제휴 문의는 아래 양식을 이용해주세요.</p>
-            <form action="https://formspree.io/f/xdallnpp" method="POST" id="contact-form">
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="이메일 주소" required>
+        let baseContent = data.draft;
+        if (data.mustInclude) baseContent += ` ${data.mustInclude}`;
+        if (data.avoid) {
+            const avoidWords = data.avoid.split(',').map(s => s.trim());
+            avoidWords.forEach(word => {
+                baseContent = baseContent.split(word).join('');
+            });
+        }
+
+        const versions = [
+            {
+                type: "짧고 명확하게 (Short)",
+                content: `안녕하세요, ${data.recipient}님.\n${baseContent}\n\n오늘 ${flowerNames}의 ${mainMeaning}을 빌려 제 마음을 전합니다.\n감사합니다.`
+            },
+            {
+                type: "다정하고 기본적이게 (Basic)",
+                content: `${data.recipient}님께,\n\n${baseContent}\n\n직접 말로 다 하기 쑥스러워 이 편지와 함께 ${flowerNames}를 골라봤어요. 꽃말처럼 ${mainMeaning}하는 제 마음이 잘 전달되었으면 좋겠습니다.\n\n언제나 응원합니다.`
+            },
+            {
+                type: "문학적이고 깊이있게 (Literary)",
+                content: `친애하는 ${data.recipient}님께,\n\n계절의 틈 사이로 ${bestFlowerSet.flowers[0].name}의 향기가 스며드는 날입니다.\n${baseContent}\n\n마치 ${mainMeaning}이라는 꽃말처럼, 제 진심도 당신의 곁에 은은하게 머물기를 바랍니다. 이 작은 꽃다발이 당신의 하루에 작은 빛이 되길 빌며.\n\n당신의 평안을 빕니다.`
+            }
+        ];
+
+        return versions;
+    }
+
+    function generateShortPhrases(data, bestFlowerSet) {
+        return [
+            `"${bestFlowerSet.flowers[0].name}처럼 당신의 하루가 피어나길."`,
+            `"${bestFlowerSet.flowers[0].meanings[0]}의 진심을 담아 보냅니다."`
+        ];
+    }
+
+    function renderResults(flowerSets, letterVersions, shortPhrases) {
+        const flowerContainer = document.getElementById('flower-results');
+        flowerContainer.innerHTML = '';
+        flowerSets.forEach(set => {
+            const card = document.createElement('div');
+            card.className = 'flower-card';
+            card.innerHTML = `
+                <h3>${set.name}</h3>
+                <div class="palette">
+                    ${set.palette.map(c => `<div class="color-circle" style="background-color: ${c}"></div>`).join('')}
                 </div>
-                <div class="form-group">
-                    <textarea name="message" placeholder="문의 내용을 입력해주세요" required></textarea>
+                <div class="flower-list">
+                    ${set.flowers.map(f => `<div class="flower-item"><strong>${f.name}</strong>: ${f.meanings.join(', ')}</div>`).join('')}
                 </div>
-                <button type="submit" class="submit-btn">메시지 보내기</button>
-            </form>
-        </section>
+                <div class="flower-reasoning">${set.reasoning}</div>
+                <div class="caution">⚠️ ${set.caution}</div>
+            `;
+            flowerContainer.appendChild(card);
+        });
 
-        <div id="disqus_thread" style="margin-top: 50px;"></div>
-        <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://productbuilder-kvwoiitlbt.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </main>
+        const letterContainer = document.getElementById('letter-results');
+        letterContainer.innerHTML = '';
+        letterVersions.forEach(v => {
+            const card = document.createElement('div');
+            card.className = 'letter-card';
+            card.innerHTML = `
+                <div class="letter-header">
+                    <span class="letter-type">${v.type}</span>
+                    <button class="copy-btn" onclick="copyToClipboard(this)">복사하기</button>
+                </div>
+                <div class="letter-body">${v.content}</div>
+            `;
+            letterContainer.appendChild(card);
+        });
 
-    <footer class="site-footer">
-        <div class="footer-links">
-            <a href="privacy.html">개인정보처리방침</a>
-            <a href="terms.html">이용약관</a>
-        </div>
-        <p>&copy; 2026 로또 번호 생성기. All rights reserved.</p>
-    </footer>
+        const phraseContainer = document.getElementById('phrase-results');
+        phraseContainer.innerHTML = '';
+        shortPhrases.forEach(p => {
+            const div = document.createElement('div');
+            div.className = 'short-phrase';
+            div.innerText = p;
+            phraseContainer.appendChild(div);
+        });
+    }
 
-    <script defer type="text/javascript" src="main.js"></script>
+    window.copyToClipboard = function(btn) {
+        const text = btn.parentElement.nextElementSibling.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = "복사됨!";
+            setTimeout(() => btn.innerText = originalText, 2000);
+        });
+    }
+</script>
+
 </body>
 </html>
