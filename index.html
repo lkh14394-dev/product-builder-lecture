@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>알랑가 (Alangga) - 가장 빠른 진심 배송</title>
+    <title>알랑가 (Alangga) - 당신의 진심, 실패 없는 선택</title>
     <style>
         :root {
             --primary: #ff4d6d;
@@ -62,14 +62,12 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
         .sit-btn:hover, .sit-btn.active {
             border-color: var(--primary);
             color: var(--primary);
             background: #fff5f6;
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(255, 77, 109, 0.1);
         }
 
         /* Product List */
@@ -89,7 +87,7 @@
             transition: all 0.3s;
             border: 1px solid #f0f0f0;
         }
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+        .product-card:hover { transform: translateY(-8px); }
         .product-img { width: 100%; height: 280px; background: #f0f0f0; object-fit: cover; }
         .product-info { padding: 25px; }
         .product-tag { font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-bottom: 8px; background: #fff5f6; display: inline-block; padding: 2px 8px; border-radius: 6px; }
@@ -108,63 +106,92 @@
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: background 0.2s;
         }
-        .buy-btn:hover { background: #000; }
 
-        /* Modal */
+        /* Modal & UI Refinement */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             z-index: 1000;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
+            padding: 20px;
         }
         .modal-content {
             background: #fff;
             width: 100%;
-            max-width: 550px;
-            max-height: 95%;
-            border-top-left-radius: 32px;
-            border-top-right-radius: 32px;
-            padding: 40px 25px;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 32px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
             overflow-y: auto;
-            position: relative;
         }
-        .modal-header { margin-bottom: 30px; }
-        .modal-header h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
-        
-        .ai-translator {
-            background: #f4f8ff;
-            padding: 25px;
-            border-radius: 24px;
+
+        .modal-left { display: flex; flex-direction: column; }
+        .modal-right { display: flex; flex-direction: column; justify-content: flex-start; background: #f9f9f9; border-radius: 24px; padding: 25px; }
+
+        .situation-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 25px;
-            border: 1px solid #e1ecff;
         }
-        .ai-label { font-size: 0.9rem; font-weight: 700; color: #0055ff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-        .keyword-input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #ddecff;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-        .ai-recommendations { display: flex; flex-direction: column; gap: 12px; }
-        .ai-phrase {
-            background: #fff;
-            padding: 18px;
-            border-radius: 14px;
-            border: 1px solid #ddecff;
+        .chip {
+            padding: 10px 16px;
+            background: #f0f2f5;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s;
-            line-height: 1.4;
+            border: 1px solid transparent;
+            transition: 0.2s;
         }
-        .ai-phrase:hover { border-color: #0055ff; background: #faffff; transform: translateX(5px); }
-        .ai-phrase.selected { border-color: #0055ff; background: #eef5ff; font-weight: 700; box-shadow: 0 4px 12px rgba(0,85,255,0.1); }
+        .chip:hover { background: #e4e6e9; }
+        .chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Card Preview */
+        .card-preview {
+            aspect-ratio: 4/3;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background-image: radial-gradient(#f0f0f0 1px, transparent 1px);
+            background-size: 15px 15px;
+            border: 1px solid #eee;
+        }
+        .card-text {
+            font-family: 'Gowun Batang', serif;
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-break: keep-all;
+        }
+
+        .ai-options { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+        .ai-option-card {
+            padding: 18px;
+            border: 2px solid #f0f0f0;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #fff;
+        }
+        .ai-option-card:hover { border-color: var(--primary); background: #fffcfc; transform: translateX(5px); }
+        .ai-option-card.selected { border-color: var(--primary); background: #fffcfc; box-shadow: 0 4px 12px rgba(255, 77, 109, 0.1); }
+        .ai-option-card .tone-label { font-size: 0.75rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+        .ai-option-card p { font-size: 0.95rem; color: #444; line-height: 1.5; font-weight: 500; }
 
         .final-buy-btn {
             width: 100%;
@@ -175,28 +202,21 @@
             border-radius: 18px;
             font-size: 1.2rem;
             font-weight: 800;
-            margin-top: 10px;
+            margin-top: 30px;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
+            transition: all 0.2s;
         }
+        .final-buy-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4); }
 
-        .close-modal-btn {
-            width: 100%;
-            background: none;
-            border: none;
-            color: #aaa;
-            margin-top: 20px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        @media (min-width: 600px) {
-            .situation-buttons { grid-template-columns: repeat(3, 1fr); }
-            .modal { align-items: center; padding: 20px; }
-            .modal-content { border-radius: 32px; }
+        @media (max-width: 850px) {
+            .modal-content { grid-template-columns: 1fr; padding: 25px; }
+            .modal-right { order: -1; padding: 15px; }
+            .card-preview { aspect-ratio: 16/9; }
         }
     </style>
+    <!-- 구글 폰트 (나름의 감성을 위해) -->
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -217,33 +237,39 @@
 <main class="container">
     <h2 id="section-title" class="section-title">추천 상품 리스트</h2>
     <div id="product-list" class="product-grid">
-        <!-- 상품이 여기에 동적으로 삽입됨 -->
+        <!-- 상품 삽입 -->
     </div>
 </main>
 
-<!-- 결제 및 메시지 카드 모달 -->
 <div id="checkout-modal" class="modal">
     <div class="modal-content">
-        <div class="modal-header">
-            <h2>메시지 카드 작성</h2>
-            <p id="selected-product-info" style="color: #666; font-size: 0.95rem; margin-top: 5px;"></p>
+        <div class="modal-left">
+            <h2 style="font-weight: 900; margin-bottom: 10px;">상황 선택</h2>
+            <p style="color: #888; font-size: 0.9rem; margin-bottom: 25px;">가장 가까운 상황을 골라주세요. AI가 센스 있는 문구를 제안합니다.</p>
+            
+            <div id="situation-chips" class="situation-chips">
+                <!-- 칩 삽입 -->
+            </div>
+
+            <div id="ai-options" class="ai-options">
+                <!-- AI 제안 문구 삽입 -->
+            </div>
+
+            <button class="final-buy-btn" onclick="completePurchase()">결제하고 카드 발송하기</button>
+            <button onclick="closeModal()" style="background:none; border:none; color:#bbb; margin-top:20px; cursor:pointer; text-decoration:underline; font-size:0.9rem;">돌아가기</button>
         </div>
 
-        <div class="ai-translator">
-            <span class="ai-label">✨ AI 센스 문구 추천</span>
-            <input type="text" id="keyword-input" class="keyword-input" placeholder="키워드 입력 (예: 늦잠, 미안해, 1주년)">
-            <div id="ai-phrase-list" class="ai-recommendations">
-                <p style="font-size: 0.9rem; color: #7a869a; text-align: center; padding: 10px;">키워드를 입력하면 AI가 최적의 문구를 제안합니다.</p>
+        <div class="modal-right">
+            <h3 style="font-size: 0.9rem; margin-bottom: 20px; color: #555; text-align: center; font-weight: 700;">실제 메시지 카드 미리보기</h3>
+            <div class="card-preview">
+                <div id="preview-text" class="card-text">왼쪽에서 상황과 문구를 선택하시면<br>마음이 담긴 카드가 완성됩니다.</div>
+            </div>
+            <div style="margin-top: 25px; padding: 15px; background: #fff; border-radius: 12px; border: 1px solid #eee;">
+                <p style="font-size: 0.8rem; color: #666; line-height: 1.5;">
+                    💡 <strong>Tip:</strong> AI 코치가 제안하는 문구는 상대방이 부담을 느끼지 않도록 매우 담백하게 설계되었습니다.
+                </p>
             </div>
         </div>
-
-        <div style="margin-bottom: 25px;">
-            <label style="font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; display: block; color: #444;">선택된 카드 문구</label>
-            <textarea id="final-message" style="width: 100%; padding: 18px; border: 2px solid #f0f0f0; border-radius: 16px; height: 100px; font-size: 1rem; background: #fafafa; resize: none;" placeholder="추천 문구를 클릭하면 자동으로 입력됩니다."></textarea>
-        </div>
-
-        <button class="final-buy-btn" onclick="completePurchase()">지금 바로 결제하기</button>
-        <button class="close-modal-btn" onclick="closeModal()">나중에 하기</button>
     </div>
 </div>
 
@@ -251,29 +277,37 @@
     const PRODUCTS = [
         { id: 1, category: 'apology', name: '화해의 백합 클래식', price: '49,000', time: '90분 이내', tag: '사과 성공률 1위', img: 'https://images.unsplash.com/photo-1596003903067-bf5762ad5c19?auto=format&fit=crop&w=600&q=80' },
         { id: 2, category: 'apology', name: '진심 전달 레드 장미', price: '55,000', time: '2시간 이내', tag: '가장 진중한 선택', img: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=600&q=80' },
-        { id: 3, category: 'apology', name: '부드러운 용서 수국', price: '42,000', time: '1시간 이내', tag: '부담 없는 사과', img: 'https://images.unsplash.com/photo-1508784411316-02b8cd4d3a3a?auto=format&fit=crop&w=600&q=80' },
         { id: 4, category: 'surprise', name: '오피스 활력 거베라', price: '35,000', time: '60분 이내', tag: '기분 전환 직빵', img: 'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=600&q=80' },
-        { id: 5, category: 'surprise', name: '데스크 미니 파스텔', price: '29,000', time: '45분 이내', tag: '센스 있는 깜짝 선물', img: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80' },
-        { id: 6, category: 'anniversary', name: '프리미엄 로즈 골드 박스', price: '98,000', time: '예약 배송 전용', tag: '압도적 분위기', img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80' },
-        { id: 7, category: 'anniversary', name: '영원한 약속 튤립', price: '72,000', time: '3시간 이내', tag: '기념일 베스트셀러', img: 'https://images.unsplash.com/photo-1520323232427-6b624831ea9b?auto=format&fit=crop&w=600&q=80' }
+        { id: 6, category: 'anniversary', name: '프리미엄 로즈 골드 박스', price: '98,000', time: '예약 배송 전용', tag: '압도적 분위기', img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80' }
     ];
 
-    const AI_PHRASES = {
-        'apology': [
-            "말주변이 없어서 꽃으로 대신해. 진심으로 미안해.",
-            "화풀릴 때까지 기다릴게. 내 진심이 닿기를 바라.",
-            "내가 다 잘못했어. 이 꽃처럼 다시 우리 웃자."
-        ],
-        'surprise': [
-            "오늘 하루도 고생 많았어! 힘내라고 보낸다.",
-            "네 책상이 이 꽃처럼 환해졌으면 좋겠어. 화이팅!",
-            "생각나서 보냈어. 커피 한 잔 하며 꽃 보며 쉬어."
-        ],
-        'anniversary': [
-            "우리 함께한 모든 날이 꽃처럼 아름다웠어. 사랑해.",
-            "세상에서 네가 제일 예쁘지만, 이 꽃도 너 닮았어.",
-            "앞으로의 모든 기념일도 나랑 함께해줘. 고마워."
-        ]
+    const SITUATIONS = {
+        'apology': ['어제 크게 다퉜을 때', '기념일을 깜빡했을 때', '답장이 너무 늦었을 때', '나의 실수로 서운하게 했을 때'],
+        'surprise': ['요즘 바빠서 못 챙겨줬을 때', '직장 스트레스받아 할 때', '그냥 문득 보고 싶을 때', '월요병으로 힘들어할 때'],
+        'anniversary': ['처음 만난 날을 축하하며', '100일/1주년 기념일', '생일을 더 특별하게', '우리의 소중한 미래를 위해']
+    };
+
+    const AI_LOGIC = {
+        '어제 크게 다퉜을 때': {
+            '담백한 사과형': "어제는 내가 정말 미안했어.\n생각할수록 마음이 안 좋네.\n우리 꽃 보면서 조금이라도 화 풀자.",
+            '귀여운 애교형': "어제의 못난 나를 한 번만 봐주면 안 될까?\n맛있는 거 사들고 기다릴게.\n꽃이랑 같이 화해 받아줘!",
+            '츤데레형': "지나가다 예뻐서 샀어.\n어제 일은 내가 미안하니까\n이거 보고 대충 퉁치자."
+        },
+        '기념일을 깜빡했을 때': {
+            '담백한 사과형': "정말 중요한 날인데 정신이 없었네.\n진심으로 미안해.\n늦었지만 우리 오늘 더 행복하게 보내자.",
+            '귀여운 애교형': "나 머릿속에 지우개 있나 봐...\n죽을죄를 지었습니다!\n오늘 내가 하루 종일 공주 대접 해줄게.",
+            '츤데레형': "깜빡한 거 아니고 서프라이즈 준비 중이었어.\n믿기 힘들겠지만 진짜야.\n늦어서 미안, 사랑해."
+        },
+        '요즘 바빠서 못 챙겨줬을 때': {
+            '담백한 사과형': "요즘 너무 내 생각만 하느라 널 못 챙겼네.\n늘 옆에 있어줘서 고마워.\n이번 주말엔 온전히 너한테만 집중할게.",
+            '귀여운 애교형': "나 드디어 바쁜 거 끝났다!\n그동안 기다려줘서 너무 고마워.\n내 마음 선결제하니까 빨리 만나자.",
+            '츤데레형': "바빠서 신경 못 썼더니 좀 마음에 걸려서.\n오다 주웠으니까 버리지 말고 잘 둬."
+        },
+        '직장 스트레스받아 할 때': {
+            '담백한 사과형': "오늘 하루도 정말 고생 많았어.\n네가 얼마나 열심히 하는지 잘 알아.\n꽃 보면서 잠시라도 웃었으면 좋겠다.",
+            '귀여운 애교형': "힘든 회사 생활에 꽃 한 스푼!\n내가 뒤에서 항상 응원하고 있는 거 알지?\n퇴근하고 맛있는 거 먹으러 가자.",
+            '츤데레형': "누가 우리 OO 스트레스 주냐.\n꽃 보면서 힐링하고 빨리 퇴근해.\n집에서 맛있는 거 대기 중임."
+        }
     };
 
     let currentCategory = '';
@@ -281,83 +315,75 @@
     function filterProducts(category, btn) {
         currentCategory = category;
         const listContainer = document.getElementById('product-list');
-        const title = document.getElementById('section-title');
-        
         document.querySelectorAll('.sit-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         const filtered = PRODUCTS.filter(p => p.category === category);
         listContainer.innerHTML = filtered.map(p => `
             <div class="product-card">
-                <img src="${p.img}" class="product-img" alt="${p.name}">
+                <img src="${p.img}" class="product-img">
                 <div class="product-info">
                     <div class="product-tag">${p.tag}</div>
                     <div class="product-name">${p.name}</div>
                     <div class="product-price">₩${p.price}</div>
-                    <div class="product-meta">
-                        <span>🚀 배송: ${p.time}</span>
-                    </div>
-                    <button class="buy-btn" onclick="openModal('${p.name}', '${p.price}')">구매하기</button>
+                    <button class="buy-btn" onclick="openModal()">주문하기</button>
                 </div>
             </div>
         `).join('');
-
-        title.style.display = 'block';
+        document.getElementById('section-title').style.display = 'block';
         window.scrollTo({ top: 450, behavior: 'smooth' });
     }
 
-    function openModal(name, price) {
+    function openModal() {
         document.getElementById('checkout-modal').style.display = 'flex';
-        document.getElementById('selected-product-info').innerText = `${name} | ₩${price}`;
-        document.getElementById('keyword-input').value = '';
-        document.getElementById('final-message').value = '';
-        
-        const phraseList = document.getElementById('ai-phrase-list');
-        const defaultPhrases = AI_PHRASES[currentCategory] || AI_PHRASES['surprise'];
-        
-        phraseList.innerHTML = defaultPhrases.map(p => `
-            <div class="ai-phrase" onclick="selectPhrase(this)">${p}</div>
-        `).join('');
+        renderChips();
     }
 
     function closeModal() {
         document.getElementById('checkout-modal').style.display = 'none';
     }
 
-    function selectPhrase(el) {
-        document.querySelectorAll('.ai-phrase').forEach(p => p.classList.remove('selected'));
+    function renderChips() {
+        const chipContainer = document.getElementById('situation-chips');
+        const chips = SITUATIONS[currentCategory] || SITUATIONS['surprise'];
+        chipContainer.innerHTML = chips.map(c => `<div class="chip" onclick="selectSituation(this, '${c}')">${c}</div>`).join('');
+        document.getElementById('ai-options').innerHTML = '';
+        document.getElementById('preview-text').innerHTML = "왼쪽에서 상황과 문구를 선택하시면<br>마음이 담긴 카드가 완성됩니다.";
+    }
+
+    function selectSituation(el, sit) {
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        
+        const options = AI_LOGIC[sit] || {
+            '담백한 사과형': `${sit} 상황에 맞는 담백한 위로를 전합니다.\n오늘도 고생 많았고 늘 응원하고 있어.`,
+            '귀여운 애교형': `${sit}! 헤헤 내가 더 잘할게.\n이 꽃처럼 예쁘게 웃어주면 안 될까?`,
+            '츤데레형': `그냥 생각나서 보낸 거니까\n부담 갖지 말고 받아. 오다 주웠다.`
+        };
+
+        const aiContainer = document.getElementById('ai-options');
+        aiContainer.innerHTML = Object.entries(options).map(([tone, text]) => `
+            <div class="ai-option-card" onclick="updatePreview(this, '${text.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">
+                <span class="tone-label">${tone}</span>
+                <p>${text.replace(/\n/g, '<br>')}</p>
+            </div>
+        `).join('');
+    }
+
+    function updatePreview(el, text) {
+        document.getElementById('preview-text').innerHTML = text.replace(/\n/g, '<br>');
+        document.querySelectorAll('.ai-option-card').forEach(c => c.classList.remove('selected'));
         el.classList.add('selected');
-        document.getElementById('final-message').value = el.innerText;
     }
 
     function completePurchase() {
-        const msg = document.getElementById('final-message').value;
-        if (!msg) {
-            alert("메시지 카드를 작성하거나 문구를 선택해주세요!");
+        if (document.getElementById('preview-text').innerText.includes("선택하시면")) {
+            alert("상황과 문구를 먼저 선택해주세요!");
             return;
         }
-        alert("결제가 성공적으로 완료되었습니다. 진심을 담아 신속히 배송해 드릴게요!");
+        alert("성공적으로 주문되었습니다! 정성을 다해 카드와 꽃을 배송하겠습니다.");
         closeModal();
     }
-
-    // Keyword input simulation
-    document.getElementById('keyword-input').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            const val = this.value;
-            if (val) {
-                // In a real app, this would hit an API. Here we simulate.
-                const phraseList = document.getElementById('ai-phrase-list');
-                const simulated = [
-                    `'${val}'을(를) 생각하며 골랐어. 내 마음이야.`,
-                    `${val}... 정말 미안하고 고마워. 진심이야.`,
-                    `우리 ${val} 때 기억나? 그때처럼 행복하자.`
-                ];
-                phraseList.innerHTML = simulated.map(p => `
-                    <div class="ai-phrase" onclick="selectPhrase(this)">${p}</div>
-                `).join('');
-            }
-        }
-    });
 </script>
 
 </body>
