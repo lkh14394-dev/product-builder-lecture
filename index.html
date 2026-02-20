@@ -525,29 +525,62 @@
 
     function rewriteLetter(data, bestFlowerSet) {
         const flowerNames = bestFlowerSet.flowers.slice(0, 2).map(f => f.name).join(', ');
-        const mainMeaning = bestFlowerSet.flowers[0].meanings[0];
+        const mainFlower = bestFlowerSet.flowers[0];
+        const mainMeaning = mainFlower.meanings[0];
         
+        // Helper to polish sentences based on tone
+        function transformContent(text, tone) {
+            let polished = text.trim();
+            
+            // Basic cleanup: remove extra spaces, fix common endings
+            polished = polished.replace(/\s+/g, ' ');
+            
+            if (tone === "Short") {
+                // Shorten and make concise
+                if (polished.length > 50) polished = polished.substring(0, 50) + "...";
+                return polished;
+            } else if (tone === "Literary") {
+                // Add metaphorical connectors
+                const connectors = ["마치 계절이 머무는 것처럼 ", "어느덧 마음 한편에 ", "빛바랜 기억 사이로 ", "은은한 향기처럼 "];
+                const connector = connectors[Math.floor(Math.random() * connectors.length)];
+                return connector + polished.replace(/합니다|해요/g, "하곤 합니다")
+                                         .replace(/있습니다|있어요/g, "머물러 있습니다");
+            } else if (tone === "Formal") {
+                // Change to formal endings
+                return polished.replace(/해요|함|이다/g, "합니다")
+                               .replace(/고맙다|고마워/g, "감사드립니다")
+                               .replace(/미안해|미안하다/g, "송구한 마음을 전합니다");
+            }
+            return polished;
+        }
+
         let baseContent = data.draft;
-        if (data.mustInclude) baseContent += ` ${data.mustInclude}`;
+        
+        // Integrate must-include sentence naturally
+        if (data.mustInclude && !baseContent.includes(data.mustInclude)) {
+            baseContent += ". " + data.mustInclude;
+        }
+
+        // Apply "avoid" filter
         if (data.avoid) {
             const avoidWords = data.avoid.split(',').map(s => s.trim());
             avoidWords.forEach(word => {
-                baseContent = baseContent.split(word).join('');
+                if (word) baseContent = baseContent.split(word).join('[...]');
             });
         }
 
         const versions = [
             {
                 type: "짧고 명확하게 (Short)",
-                content: `안녕하세요, ${data.recipient}님.\n${baseContent}\n\n오늘 ${flowerNames}의 ${mainMeaning}을 빌려 제 마음을 전합니다.\n감사합니다.`
+                content: `${data.recipient}님께.\n\n${transformContent(baseContent, "Short")}\n\n오늘 ${flowerNames}의 '${mainMeaning}'이라는 의미를 담아 제 마음을 보냅니다.`
             },
             {
-                type: "다정하고 기본적이게 (Basic)",
-                content: `${data.recipient}님께,\n\n${baseContent}\n\n직접 말로 다 하기 쑥스러워 이 편지와 함께 ${flowerNames}를 골라봤어요. 꽃말처럼 ${mainMeaning}하는 제 마음이 잘 전달되었으면 좋겠습니다.\n\n언제나 응원합니다.`
+                type: "따뜻하고 다정하게 (Basic)",
+                content: `안녕하세요, ${data.recipient}님.\n\n${baseContent}\n\n직접 말로 전하기엔 조금 쑥스러워 이 편지와 함께 ${flowerNames}를 골랐어요. '${mainMeaning}'이라는 꽃말처럼 제 진심이 당신에게 따뜻하게 닿기를 바랍니다.\n\n언제나 당신을 응원할게요.`
             },
             {
                 type: "문학적이고 깊이있게 (Literary)",
-                content: `친애하는 ${data.recipient}님께,\n\n계절의 틈 사이로 ${bestFlowerSet.flowers[0].name}의 향기가 스며드는 날입니다.\n${baseContent}\n\n마치 ${mainMeaning}이라는 꽃말처럼, 제 진심도 당신의 곁에 은은하게 머물기를 바랍니다. 이 작은 꽃다발이 당신의 하루에 작은 빛이 되길 빌며.\n\n당신의 평안을 빕니다.`
+                content: `친애하는 ${data.recipient}님께,\n\n${transformContent(baseContent, "Literary")}\n\n계절의 틈 사이로 피어난 ${mainFlower.name}의 향기처럼, 우리의 시간도 은은하게 기억되길 빌어봅니다. '${mainMeaning}'이라는 꽃말에 제 모든 진심을 눌러 담았습니다.\n\n당신의 평안을 기원하며.`
             }
         ];
 
