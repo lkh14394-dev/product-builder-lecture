@@ -1,239 +1,285 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-63QEF6ST40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-63QEF6ST40');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-1389709658199316">
-    <title>알랑가 - 관계 회복을 위한 가장 확실한 공식</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1389709658199316" crossorigin="anonymous"></script>
+    <title>알랑가 | 하이엔드 관계 회복 솔루션</title>
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'boutique-bg': '#F9F8F4',
+                        'boutique-dark': '#2C2C2C',
+                        'forest-green': '#1A3C34',
+                        'antique-gold': '#C4A484',
+                    },
+                    fontFamily: {
+                        serif: ['"Nanum Myeongjo"', 'serif'],
+                        sans: ['Pretendard', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
     <style>
-        :root {
-            --point: #d00000; /* 신뢰와 경고의 레드 */
-            --dark: #1a1a1a;
-            --gold: #c6a664;
-            --bg: #ffffff;
-            --section: #f4f4f4;
-            --text: #333;
+        body {
+            background-color: #F9F8F4;
+            color: #2C2C2C;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.02em;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; letter-spacing: -0.5px; }
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-
-        /* Urgency Bar */
-        .urgency-bar {
-            background: var(--point); color: white; padding: 10px; text-align: center;
-            font-size: 0.9rem; font-weight: 700; position: sticky; top: 0; z-index: 2000;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 5% 60px; text-align: center; background: var(--dark); color: white;
-        }
-        .hero h1 { font-size: 2.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
-        .hero h1 span { color: var(--point); }
-        .hero p { font-size: 1.1rem; color: #aaa; margin-bottom: 40px; }
-        .stats-badge {
-            display: inline-flex; gap: 20px; background: rgba(255,255,255,0.1);
-            padding: 15px 30px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);
-        }
-        .stat-item b { color: var(--gold); font-size: 1.4rem; }
-
-        /* Step Container */
-        .container { max-width: 800px; margin: 0 auto; padding: 60px 5%; }
-        .step { display: none; animation: slideUp 0.5s ease forwards; }
-        .step.active { display: block; }
-
-        .section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 30px; text-align: center; }
-
-        /* Situation Buttons */
-        .grid-buttons { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .btn-solution {
-            padding: 25px; border: 2px solid #eee; border-radius: 15px; background: white;
-            text-align: left; cursor: pointer; transition: 0.3s;
-        }
-        .btn-solution:hover { border-color: var(--point); background: #fff8f8; }
-        .btn-solution h3 { font-size: 1.2rem; margin-bottom: 5px; }
-        .btn-solution p { font-size: 0.9rem; color: #888; }
-
-        /* Story Input */
-        .input-area { margin-top: 30px; }
-        textarea {
-            width: 100%; height: 150px; padding: 20px; border: 2px solid #eee; border-radius: 15px;
-            font-size: 1rem; resize: none; margin-bottom: 20px; outline: none;
-        }
-        textarea:focus { border-color: var(--point); }
-
-        /* Package Card */
-        .package-card {
-            border: 1px solid #ddd; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .package-img { width: 100%; height: 350px; object-fit: cover; background: #eee; }
-        .package-info { padding: 30px; text-align: center; }
-        .package-price { font-size: 1.8rem; font-weight: 900; margin: 15px 0; }
-
-        /* Common Button */
-        .btn-action {
-            width: 100%; padding: 22px; background: var(--dark); color: white; border: none;
-            border-radius: 15px; font-size: 1.2rem; font-weight: 800; cursor: pointer; transition: 0.3s;
-        }
-        .btn-action:hover { background: var(--point); transform: translateY(-3px); }
-
-        /* Post-payment Section Refinement */
-        #post-payment { text-align: center; padding: 40px; background: #fff; border: 1px solid #eee; border-radius: 30px; box-shadow: var(--shadow); }
-        .poem-quote {
-            font-style: italic; color: var(--point); font-size: 1.1rem; margin-bottom: 20px; padding: 0 20px;
-            line-height: 1.5; border-left: 3px solid var(--point); display: inline-block; text-align: left;
-        }
-        .translated-card {
-            background: #fffcfc; padding: 40px; border-radius: 10px; box-shadow: inset 0 0 50px rgba(0,0,0,0.02);
-            font-family: 'Gowun Batang', serif; font-size: 1.2rem; line-height: 2; color: #333; margin: 20px 0;
-            text-align: left; border: 1px solid #f0f0f0;
-        }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; }
+        .serif { font-family: 'Nanum Myeongjo', serif; }
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Scrollbar for Premium Feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F9F8F4; }
+        ::-webkit-scrollbar-thumb { background: #C4A484; border-radius: 10px; }
+        
+        .premium-shadow { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03); }
+        .premium-button-hover { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .premium-button-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(26, 60, 52, 0.1); }
+        
+        .line-drawing { opacity: 0.1; position: absolute; pointer-events: none; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="font-sans">
 
-<div class="urgency-bar">
-    ⚠️ 현재 주문 폭주: 오늘 14:00 배송 마감까지 <span id="timer">--:--:--</span> 남음
+<!-- Header / Navigation -->
+<nav class="sticky top-0 z-50 bg-boutique-bg/80 backdrop-blur-md border-b border-antique-gold/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="index.html" class="serif text-2xl font-extrabold tracking-widest text-forest-green">ALANGGA</a>
+        <div class="hidden md:flex space-x-12 text-sm font-medium tracking-widest uppercase text-boutique-dark/60">
+            <span class="hover:text-forest-green cursor-pointer transition-colors">Boutique</span>
+            <span class="hover:text-forest-green cursor-pointer transition-colors">Philosophy</span>
+            <span class="hover:text-forest-green cursor-pointer transition-colors">Concierge</span>
+        </div>
+    </div>
+</nav>
+
+<!-- Urgency Bar -->
+<div class="bg-forest-green text-white py-3 text-center text-xs tracking-widest font-light uppercase">
+    Premium Concierge Service Available: Closing in <span id="timer" class="font-bold">--:--:--</span>
 </div>
 
-<header class="hero">
-    <h1>싸운 다음 날,<br><span>가장 확실한</span> 화해 공식</h1>
-    <p>화해 성공률 98%, 당신의 진심을 데이터로 세팅해 드립니다.</p>
-    <div class="stats-badge">
-        <div class="stat-item">누적 화해 <b>12,402건</b></div>
-        <div class="stat-item">평균 평점 <b>4.9/5.0</b></div>
-    </div>
-</header>
-
-<main class="container">
-    <!-- Step 1: Situation -->
-    <div id="step-1" class="step active">
-        <h2 class="section-title">지금 어떤 문제에 직면해 계신가요?</h2>
-        <div class="grid-buttons">
-            <button class="btn-solution" onclick="goStep(2, 'apology')">
-                <h3>🚨 어제 크게 다퉜을 때</h3>
-                <p>냉전 중인 관계를 즉시 해제하는 긴급 처방</p>
-            </button>
-            <button class="btn-solution" onclick="goStep(2, 'anniversary')">
-                <h3>📅 소중한 날을 망쳤을 때</h3>
-                <p>실망감을 감동으로 바꾸는 역전 솔루션</p>
-            </button>
-            <button class="btn-solution" onclick="goStep(2, 'negligence')">
-                <h3>🏢 요즘 너무 바빠 신경 못 썼을 때</h3>
-                <p>익숙함 속에 숨겨진 고마움을 전하는 회복탄력성</p>
-            </button>
-        </div>
-    </div>
-
-    <!-- Step 2: Story -->
-    <div id="step-2" class="step">
-        <h2 class="section-title">무엇이 미안한지 짧게 적어주세요.</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 20px;">AI 코치가 당신의 사연을 분석해 완벽한 문장을 만듭니다.</p>
-        <textarea id="user-story" placeholder="예: 어제 술 마시고 연락 안 된 거 미안해, 바빠서 생일 못 챙겨준 거 후회돼 등"></textarea>
-        <button class="btn-action" onclick="goStep(3)">솔루션 확인하기</button>
-    </div>
-
-    <!-- Step 3: Solution Package -->
-    <div id="step-3" class="step">
-        <h2 class="section-title">전문가가 설계한 최적의 솔루션</h2>
-        <div class="package-card">
-            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80" class="package-img" alt="Solution">
-            <div class="package-info">
-                <h3 id="package-name">[관계 회복 패키지]</h3>
-                <p style="color: #888; margin-top: 10px;">상황 맞춤 큐레이션 꽃 + 감성 마음 통역 카드</p>
-                <div class="package-price">₩59,000</div>
-                <p style="font-size: 0.9rem; color: var(--point); margin-bottom: 20px;">
-                    * 입력하신 사연을 바탕으로, <b>시 구절과 꽃말</b>을 담은<br>가장 진정성 있는 메시지를 생성하여 발송합니다.
-                </p>
-                <button class="btn-action" onclick="simulatePayment()" style="background: var(--point);">지금 결제하고 메시지 확인하기</button>
+<!-- Main Content -->
+<main class="min-h-screen">
+    
+    <!-- Hero Section -->
+    <section id="hero-area" class="relative pt-32 pb-24 px-6 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-antique-gold serif text-sm tracking-[0.4em] uppercase mb-8">Relationship Recovery Boutique</h2>
+            <h1 class="serif text-5xl md:text-7xl font-extrabold leading-[1.1] mb-10 text-forest-green">
+                당신의 진심을 위해<br>설계된 가장 우아한 기록
+            </h1>
+            <p class="text-boutique-dark/60 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-16">
+                화해 성공률 98%. 단순한 꽃 배달을 넘어,<br>데이터와 감성이 결합된 프리미엄 관계 회복 솔루션을 제안합니다.
+            </p>
+            <div class="flex justify-center space-x-12 border-t border-b border-antique-gold/20 py-10">
+                <div>
+                    <div class="serif text-3xl font-bold text-forest-green">12,402</div>
+                    <div class="text-[10px] uppercase tracking-widest text-antique-gold mt-1">Curated Success</div>
+                </div>
+                <div class="w-px h-12 bg-antique-gold/20"></div>
+                <div>
+                    <div class="serif text-3xl font-bold text-forest-green">4.9/5.0</div>
+                    <div class="text-[10px] uppercase tracking-widest text-antique-gold mt-1">Client Satisfaction</div>
+                </div>
             </div>
         </div>
-    </div>
+        
+        <!-- Decorative Elements -->
+        <div class="line-drawing top-20 -left-20 w-96 h-96 border border-antique-gold rounded-full"></div>
+        <div class="line-drawing -bottom-40 -right-40 w-[30rem] h-[30rem] border border-forest-green/20 rounded-full"></div>
+    </section>
 
-    <!-- Step 4: Success / Reveal Message -->
-    <div id="step-4" class="step">
-        <div id="post-payment">
-            <div style="font-size: 3rem; margin-bottom: 10px;">💌</div>
-            <h2 style="margin-bottom: 10px;">진심이 완성되었습니다</h2>
-            <p style="color: #666; margin-bottom: 30px;">당신의 사연을 바탕으로 정성껏 다듬은 문구입니다.</p>
+    <!-- Interactive Section Container -->
+    <div class="max-w-5xl mx-auto px-6 pb-40">
+        
+        <!-- Step 1: Situation -->
+        <div id="step-1" class="step active">
+            <h3 class="serif text-3xl text-center mb-16 text-forest-green">현재 당신의 상황을 선택해 주십시오</h3>
+            <div id="situation-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Buttons will be injected here -->
+            </div>
+        </div>
+
+        <!-- Step 2: Story -->
+        <div id="step-2" class="step">
+            <h3 class="serif text-3xl text-center mb-4 text-forest-green font-bold">전하고 싶은 당신의 사연</h3>
+            <p class="text-center text-boutique-dark/50 text-sm mb-12">입력하신 내용은 AI 부티크 코치가 가장 우아한 문장으로 변환합니다.</p>
             
-            <div id="poem-area" class="poem-quote"></div>
-            <div class="translated-card" id="final-message"></div>
+            <div class="max-w-2xl mx-auto">
+                <textarea id="user-story" 
+                    class="w-full h-64 p-8 bg-white border border-antique-gold/20 rounded-2xl text-lg font-light focus:outline-none focus:border-forest-green transition-all premium-shadow leading-relaxed"
+                    placeholder="예: 어제 술 마시고 연락 안 된 거 미안해..."></textarea>
+                
+                <div class="flex flex-col sm:flex-row gap-4 mt-12">
+                    <button class="flex-1 py-6 px-10 border border-antique-gold/30 rounded-full text-xs tracking-widest uppercase font-bold hover:bg-antique-gold/5 transition-all" 
+                        onclick="goStep(1)">Return</button>
+                    <button class="flex-[2] py-6 px-10 bg-forest-green text-white rounded-full text-xs tracking-widest uppercase font-bold premium-button-hover" 
+                        onclick="goStep(3)">Request Solution</button>
+                </div>
+            </div>
+        </div>
 
-            <p style="font-size: 0.85rem; color: #999; margin-bottom: 30px;">
-                * 이 메시지는 고급 수입지에 인쇄되어 꽃다발과 함께 전달됩니다.
-            </p>
-            <button class="btn-action" onclick="location.reload()">새로운 솔루션 시작하기</button>
+        <!-- Step 3: Solution Package -->
+        <div id="step-3" class="step">
+            <h3 class="serif text-3xl text-center mb-16 text-forest-green">부티크가 제안하는 최적의 솔루션</h3>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-[2rem] overflow-hidden premium-shadow border border-antique-gold/10">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 relative h-96 md:h-auto overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1525310238806-3934f0e97262?q=80&w=2000&auto=format&fit=crop" 
+                            class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Premium Solution">
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest-green/20 to-transparent"></div>
+                    </div>
+                    <div class="md:w-1/2 p-12 md:p-16 flex flex-col justify-center text-center">
+                        <h4 id="package-name" class="serif text-2xl mb-4 text-forest-green">[Signature Package]</h4>
+                        <p class="text-xs uppercase tracking-[0.2em] text-antique-gold mb-8">Curated Floral & Literary Concierge</p>
+                        <div class="serif text-4xl font-extrabold text-forest-green mb-8">₩59,000</div>
+                        <div class="text-sm text-boutique-dark/60 leading-relaxed mb-10 space-y-4">
+                            <p>선택하신 상황에 맞춘 <b>최상급 계절 꽃</b>과</p>
+                            <p>당신의 사연을 담은 <b>시 구절 메시지 카드</b>가 포함됩니다.</p>
+                        </div>
+                        <button class="w-full py-6 px-10 bg-antique-gold text-white rounded-full text-xs tracking-widest uppercase font-bold premium-button-hover mb-4" 
+                            onclick="simulatePayment()">Proceed to Checkout</button>
+                        <button class="text-[10px] uppercase tracking-widest text-boutique-dark/40 hover:text-antique-gold transition-all" onclick="goStep(2)">Modify Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Success / Reveal Message -->
+        <div id="step-4" class="step">
+            <div class="max-w-2xl mx-auto text-center">
+                <div class="mb-12 inline-block py-2 px-6 border border-antique-gold/30 rounded-full text-[10px] uppercase tracking-widest text-antique-gold">Your Letter is Ready</div>
+                <h3 class="serif text-4xl mb-8 text-forest-green">완성된 진심의 조각</h3>
+                
+                <div class="bg-white p-12 md:p-20 rounded-[2.5rem] premium-shadow border border-antique-gold/10 relative overflow-hidden mb-12">
+                    <div class="absolute top-0 right-0 p-8">
+                        <svg class="w-12 h-12 text-antique-gold/10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.34315 15.3601 2 17.017 2H19.017C20.6738 2 22.017 3.34315 22.017 5V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM2.01697 21L2.01697 18C2.01697 16.8954 2.9124 16 4.01697 16H7.01697C7.56925 16 8.01697 15.5523 8.01697 15V9C8.01697 8.44772 7.56925 8 7.01697 8H4.01697C2.9124 8 2.01697 7.10457 2.01697 6V5C2.01697 3.34315 3.36012 2 5.01697 2H7.01697C8.67383 2 10.017 3.34315 10.017 5V15C10.017 18.3137 7.33068 21 4.01697 21H2.01697Z" /></svg>
+                    </div>
+                    
+                    <div id="poem-area" class="serif text-xl text-forest-green/80 italic mb-12 leading-relaxed"></div>
+                    <div class="w-12 h-px bg-antique-gold/30 mx-auto mb-12"></div>
+                    <div id="final-message" class="text-left text-lg font-light leading-loose text-boutique-dark/80 whitespace-pre-wrap"></div>
+                    
+                    <div class="mt-16 pt-8 border-t border-antique-gold/10 text-[10px] uppercase tracking-[0.3em] text-antique-gold/60">
+                        Alangga Premium Concierge Signature Card
+                    </div>
+                </div>
+
+                <button class="py-6 px-16 bg-forest-green text-white rounded-full text-xs tracking-widest uppercase font-bold premium-button-hover" 
+                    onclick="location.reload()">New Consultation</button>
+            </div>
         </div>
     </div>
 </main>
 
-<footer>
-    <div style="margin-bottom: 20px;">
-        <a href="privacy.html" style="color:#999; text-decoration: none;">개인정보처리방침</a> | 
-        <a href="terms.html" style="color:#999; text-decoration: none;">이용약관</a>
+<!-- Footer -->
+<footer class="bg-forest-green text-white/40 py-24 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto text-center">
+        <div class="serif text-3xl font-extrabold tracking-widest text-white/90 mb-12 uppercase">ALANGGA</div>
+        <div class="flex flex-wrap justify-center gap-12 text-[10px] uppercase tracking-widest mb-16">
+            <a href="privacy.html" class="hover:text-antique-gold transition-colors">Privacy Policy</a>
+            <a href="terms.html" class="hover:text-antique-gold transition-colors">Terms of Service</a>
+            <span class="hover:text-antique-gold transition-colors cursor-pointer">Contact Boutique</span>
+        </div>
+        <p class="text-[10px] tracking-widest uppercase">&copy; 2026 Alangga. No.1 Relationship Recovery Boutique. All rights reserved.</p>
     </div>
-    <p>&copy; 2026 알랑가 (Alangga). No.1 Relationship Recovery Service.</p>
 </footer>
 
 <script>
-    let selectedSituation = '';
-
-    const POETRY_DB = [
-        { quote: "자세히 보아야 예쁘다. 오래 보아야 사랑스럽다. 너도 그렇다.", author: "나태주, 풀꽃" },
-        { quote: "사랑하는 것은 사랑을 받느니보다 행복하나니라.", author: "유치환, 행복" },
-        { quote: "사람이 온다는 건 실은 어마어마한 일이다. 그는 그의 과거와 현재와 그리고 그의 미래와 함께 오기 때문이다.", author: "정현종, 방문객" },
-        { quote: "내려갈 때 보았네. 올라갈 때 보지 못한 그 꽃.", author: "고은, 그 꽃" }
+    const SITUATION_DB = [
+        { id: 1, situation: "심각한 사과", flower: "보라색 히아신스", flower_language: "미안해, 나를 용서해 줘", poem_quote: "네가 나의 꽃인 것은 이 세상 다른 꽃보다 아름다워서가 아니다. 내 안에 피어난 유일한 꽃이기 때문이다.", poem_author: "이정하", vibe: "깊은 진심" },
+        { id: 2, situation: "소중한 일상", flower: "과꽃", flower_language: "믿음직한 사랑", poem_quote: "가장 예쁜 생각을 너에게 주고 싶다.", poem_author: "나태주", vibe: "따뜻한 헌신" },
+        { id: 3, situation: "뒤늦은 기념일", flower: "분홍 장미", flower_language: "행복한 사랑과 맹세", poem_quote: "너를 생각하는 것이 나의 일생이었지.", poem_author: "정채봉", vibe: "로맨틱한 고백" },
+        { id: 4, situation: "따뜻한 위로", flower: "프리지아", flower_language: "당신의 새로운 시작을 응원해", poem_quote: "흔들리지 않고 피는 꽃이 어디 있으랴. 이 세상 그 어떤 아름다운 꽃들도 다 흔들리며 피었나니.", poem_author: "도종환", vibe: "든든한 응원" },
+        { id: 5, situation: "수줍은 고백", flower: "작약", flower_language: "수줍음, 새로운 시작", poem_quote: "네가 오기로 한 그 자리에 내가 미리 가 너를 기다리는 동안 다가오는 모든 발자국은 내 가슴에 쿵쿵거린다.", poem_author: "황지우", vibe: "설레는 고백" },
+        { id: 6, situation: "새삼스러운 감사", flower: "분홍 수국", flower_language: "소녀의 꿈, 진심 어린 사랑", poem_quote: "사람이 온다는 건 실은 어마어마한 일이다. 한 사람의 일생이 오기 때문이다.", poem_author: "정현종", vibe: "진지한 마음" },
+        { id: 7, situation: "권태기 극복", flower: "리시안셔스", flower_language: "변치 않는 사랑", poem_quote: "자세히 보아야 예쁘다. 오래 보아야 사랑스럽다. 너도 그렇다.", poem_author: "나태주", vibe: "깊은 신뢰" },
+        { id: 8, situation: "도전과 지지", flower: "해바라기", flower_language: "당신만을 바라봅니다", poem_quote: "너의 하늘을 보아라. 네가 하늘처럼 생각하는, 하늘처럼 쳐다보는 네가 하늘이 되어라.", poem_author: "박노해", vibe: "묵묵한 지지" },
+        { id: 9, situation: "진실된 약속", flower: "은방울꽃", flower_language: "틀림없이 행복해집니다", poem_quote: "저녁 때 돌아갈 집이 있다는 것. 힘들 때 마음속으로 생각할 사람이 있다는 것. 그것이 온전한 행복이라는 것.", poem_author: "나태주", vibe: "단단한 약속" },
+        { id: 10, situation: "무심한 다정함", flower: "거베라", flower_language: "신비로운 진심", poem_quote: "비가 온다. 네게 말할 게 생겨서 기쁘다.", poem_author: "황인찬", vibe: "일상의 공유" }
     ];
 
-    const FLOWER_DB = [
-        { name: "리시안셔스", meaning: "변치 않는 사랑" },
-        { name: "안개꽃", meaning: "맑은 마음" },
-        { name: "튤립", meaning: "사랑의 고백" },
-        { name: "스타티스", meaning: "영원한 사랑" }
-    ];
+    let selectedSit = null;
 
-    function goStep(num, sit = '') {
-        if (sit) selectedSituation = sit;
+    function renderSituations() {
+        const grid = document.getElementById('situation-grid');
+        grid.innerHTML = SITUATION_DB.map(sit => `
+            <button class="bg-white p-10 text-left rounded-[1.5rem] premium-shadow border border-antique-gold/10 premium-button-hover group" onclick="selectSituation(${sit.id})">
+                <div class="text-[10px] uppercase tracking-widest text-antique-gold mb-4 font-bold opacity-60 group-hover:opacity-100 transition-opacity">${sit.vibe}</div>
+                <h4 class="serif text-xl text-forest-green mb-2">${sit.situation}</h4>
+                <div class="w-8 h-px bg-antique-gold/30 group-hover:w-16 transition-all duration-500"></div>
+            </button>
+        `).join('');
+    }
+
+    function selectSituation(id) {
+        selectedSit = SITUATION_DB.find(s => s.id === id);
+        goStep(2);
+    }
+
+    function goStep(num) {
         document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
         document.getElementById(`step-${num}`).classList.add('active');
-        window.scrollTo({ top: 200, behavior: 'smooth' });
         
-        if(num === 3) {
-            const sitMap = { 'apology': '긴급 화해', 'anniversary': '기념일 역전', 'negligence': '관계 회복' };
-            document.getElementById('package-name').innerText = `[${sitMap[selectedSituation] || '맞춤'}] 솔루션 패키지`;
+        // Hide/Show Hero based on steps
+        const hero = document.getElementById('hero-area');
+        if (num > 1) {
+            hero.style.display = 'none';
+        } else {
+            hero.style.display = 'block';
+        }
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        if(num === 3 && selectedSit) {
+            document.getElementById('package-name').innerText = `Signature: ${selectedSit.situation}`;
         }
     }
 
     function simulatePayment() {
         const story = document.getElementById('user-story').value;
         if (!story.trim()) {
-            alert("상대방에게 전할 사연을 짧게라도 입력해 주세요.");
-            goStep(2);
+            alert("당신의 소중한 사연을 들려주세요.");
             return;
         }
 
-        const poem = POETRY_DB[Math.floor(Math.random() * POETRY_DB.length)];
-        const flower = FLOWER_DB[Math.floor(Math.random() * FLOWER_DB.length)];
-        
-        document.getElementById('poem-area').innerText = `'${poem.quote}' (${poem.author})`;
-        document.getElementById('final-message').innerText = generateLetter(story, poem, flower);
+        document.getElementById('poem-area').innerText = `"${selectedSit.poem_quote}"`;
+        document.getElementById('final-message').innerText = generateLetter(story, selectedSit);
 
         goStep(4);
     }
 
-    function generateLetter(story, poem, flower) {
-        // 일상적인 따뜻한 말투로 변환 (MVP 로직)
-        const cleanStory = story.replace(/미안해|미안하다/g, "정말 미안한 마음뿐이야")
-                                .replace(/고마워/g, "항상 고맙게 생각해");
-
-        return `요새 ${cleanStory}.\n\n'${poem.quote.substring(0, 15)}...'라는 시 구절을 보는데, 문득 네 생각이 났어. 우리가 함께하는 시간이 당연한 게 아닌데 내가 잠시 소홀했던 것 같아.\n\n${flower.meaning}이라는 꽃말을 가진 ${flower.name}를 골라봤어. 내 마음도 이 꽃말과 같아. 서운하게 해서 미안하고, 앞으로는 네 곁에서 더 소중히 챙길게. 사랑해.`;
+    function generateLetter(story, sit) {
+        const intro = `남겨주신 "${story.substring(0, 30)}${story.length > 30 ? '...' : ''}"라는 마음의 결을 따라가 봅니다. 깊은 고민 끝에 꺼내놓으신 그 소중한 진심이 상대방에게 가장 아름답게 닿을 수 있도록 향기와 언어를 골라보았습니다.`;
+        const quoteAndBody = `${sit.poem_author} 시인의 시 구절처럼, "${sit.poem_quote}"\n\n이 문장 속의 고백처럼, 제 마음속에 당신은 그 무엇과도 바꿀 수 없는 선명한 존재입니다. '${sit.flower_language}'라는 꽃말을 지닌 ${sit.flower}에 제 진심을 가득 담았습니다. 이 향기가 제 서툰 말들을 대신해 당신의 마음에 깊이 머물기를 간절히 바랍니다.`;
+        const closing = `익숙함에 가려 보지 못했던 당신이라는 기적을 이제는 더 세심하게 마주하겠습니다. 앞으로는 더 많이 아끼고 사랑하며, 당신의 곁을 묵묵히 지키는 사람이 되겠습니다.`;
+        return `${intro}\n\n${quoteAndBody}\n\n${closing}`;
     }
 
     function startTimer() {
@@ -242,12 +288,16 @@
             let h = Math.floor(time / 3600);
             let m = Math.floor((time % 3600) / 60);
             let s = time % 60;
-            document.getElementById('timer').innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            const timerEl = document.getElementById('timer');
+            if(timerEl) timerEl.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
             time--;
         }, 1000);
     }
 
-    window.onload = startTimer;
+    window.onload = () => {
+        renderSituations();
+        startTimer();
+    };
 </script>
 
 </body>
